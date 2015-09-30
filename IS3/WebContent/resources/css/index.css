@@ -1,0 +1,18 @@
+.no-border {
+    border: 0px; 
+}
+    
+.textCenter{
+	text-align:center;
+}  
+
+.searchTool{
+	position:relative;
+	left:10%;
+	width:80%;
+}  
+
+.userButton{
+	width:80%;
+	font-size: 18px;
+}

@@ -1,0 +1,60 @@
+<html xmlns="http://www.w3c.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Registro</title>
+</h:head>
+
+<h:body>
+
+	<h:outputStylesheet library="css" name="index.css" />
+	<h:outputStylesheet library="css" name="login.css" />
+	<h:outputScript library="js" name="register.js" />
+
+	<p:panelGrid columns="3" layout="grid">
+
+		<h:outputLabel value="" />
+
+		<h:form styleClass="textCenter" style='border: solid 2px black'>
+			<p:panel header="Registrarse">
+
+				<h:panelGrid columns="2" cellpadding="5" styleClass="textCenter">
+					<h:outputLabel for="email" value="Email" />
+					<p:inputText value="#{registerBean.email}" id="email"
+						required="true" label="email" requiredMessage="Ingresa tu email"
+						validatorMessage="Mail invalido">
+
+						<f:validateRegex
+							pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+					</p:inputText>
+
+					<h:outputLabel for="password" value="Clave" />
+					<p:password value="#{registerBean.pass}" id="password"
+						required="true" label="password"
+						requiredMessage="Ingresa tu password" />
+
+					<h:outputLabel for="passwordV" value="Repetir clave" />
+					<p:password value="#{registerBean.passVer}" id="passwordV"
+						required="true" label="passwordV"
+						requiredMessage="Ingresa tu password otra vez" />
+
+					<f:facet name="footer">
+						<div class='textCenter'>
+							<p:commandButton id="registerButton" value="Registrase"
+								actionListener="#{registerBean.register}"
+								oncomplete="onRegister(xhr, status, args)" />
+						</div>
+					</f:facet>
+				</h:panelGrid>
+			</p:panel>
+			<p:messages id="messages" showDetail="true" autoUpdate="true"
+				closable="true" />
+		</h:form>
+
+		<h:outputLabel value="" />
+
+	</p:panelGrid>
+</h:body>
+
+</html>

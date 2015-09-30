@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3c.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Ingresar</title>
+</h:head>
+
+<h:body>
+
+	<h:outputStylesheet library="css" name="index.css" />
+	<h:outputStylesheet library="css" name="login.css" />
+	<h:outputScript library="js" name="login.js" />
+
+	<p:panelGrid columns="3" layout="grid">
+
+		<h:outputLabel value="" />
+
+		<h:form styleClass="textCenter" style='border: solid 2px black'>
+			<p:panel header="Login">
+
+				<h:panelGrid columns="2" cellpadding="5" styleClass="textCenter">
+					<h:outputLabel for="email" value="Email" />
+					<p:inputText value="#{loginBean.email}" id="email" required="true"
+						label="email" />
+
+					<h:outputLabel for="password" value="Clave:" />
+					<p:password value="#{loginBean.pass}" id="password" required="true"
+						label="password" />
+
+					<f:facet name="footer">
+						<div class='textCenter'>
+							<p:commandButton id="loginButton" value="Ingresar"
+								actionListener="#{loginBean.login}"
+								oncomplete="onLogin(xhr, status, args)" />
+						</div>
+					</f:facet>
+				</h:panelGrid>
+			</p:panel>
+			<p:messages id="messages" showDetail="true" autoUpdate="true"
+				closable="true" />
+		</h:form>
+
+		<h:outputLabel value="" />
+
+	</p:panelGrid>
+</h:body>
+
+</html>
