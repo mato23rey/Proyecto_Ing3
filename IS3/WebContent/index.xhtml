@@ -5,7 +5,7 @@
 <h:head>
 	<title>Farmacia Ya</title>
 </h:head>
-<h:body>
+<h:body onload="getLocation()">
 
 	<h:outputStylesheet library="css" name="index.css" />
 	<h:outputScript library="js" name="index.js" />
@@ -46,6 +46,14 @@
 		</p:panelGrid>
 	</div>
 
+	<h:form id='cordsForm' style='display:none'>
+		<h:inputHidden id='cords' value="#{mainBean.cords}" />
+		<h:commandButton value="Welcome Me" id="cordsButton">
+			<f:ajax execute="cords" />
+		</h:commandButton>
+	</h:form>
+
+
 	<h:form>
 		<p:panel header="Solicita tus medicamentos online"
 			styleClass="textCenter">
@@ -57,14 +65,13 @@
 					<p:inputText value="#{mainBean.address}" id="address"
 						required="true" label="address"
 						validatorMessage="Check your address"
-						placeholder="Ej: 18 de Julio 1266">
-						<f:validateLength minimum="1"></f:validateLength>
-
+						placeholder="Ej: 18 de Julio 1266" requiredMessage="Ingresa tu direccion">
+						
 					</p:inputText>
 
 					<h:outputLabel for="data" value="Farmacia o farmaco" />
 
-					<p:inputText value="#{mainBean.data}" id="data" required="true"
+					<p:inputText value="#{mainBean.data}" id="data"
 						label="data" placeholder="Opcional">
 
 					</p:inputText>
