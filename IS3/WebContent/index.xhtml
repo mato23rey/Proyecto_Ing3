@@ -10,7 +10,7 @@
 	<h:outputStylesheet library="css" name="index.css" />
 	<h:outputScript library="js" name="index.js" />
 
-	<div style='width: 100%; background: red'>
+	<div style='width: 100%;'>
 		<p:panelGrid columns="3" layout="grid">
 			<h:graphicImage library="img" name="pYLogo.png" height="60"
 				width="150" />
@@ -18,15 +18,30 @@
 			<h:outputText value="" />
 
 			<p:panelGrid columns="2" layout="grid"
-				columnClasses="no-border, no-border" styleClass="textCenter">
-				<h:form >
-					<h:commandButton action="login" value="Ingresar" styleClass="userButton" />
-				</h:form>
-				
+				columnClasses="no-border, no-border" styleClass="textCenter"
+				rendered="#{!loginBean.logued}">
 				<h:form>
-					<h:commandButton action="register" value="Registrarse" styleClass="userButton"/>
+					<h:commandButton action="login" value="Ingresar"
+						styleClass="userButton" />
+				</h:form>
+
+				<h:form>
+					<h:commandButton action="register" value="Registrarse"
+						styleClass="userButton" />
 				</h:form>
 			</p:panelGrid>
+
+
+			<p:panelGrid columns="2" layout="grid"
+				columnClasses="no-border, no-border" styleClass="textCenter"
+				rendered="#{loginBean.logued}">
+				<h:form>
+					<h:commandButton value="Cerrar sesion"
+						action="#{loginBean.logout()}" />
+				</h:form>
+
+			</p:panelGrid>
+
 
 		</p:panelGrid>
 	</div>

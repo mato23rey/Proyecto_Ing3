@@ -1,6 +1,7 @@
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.hibernate.Query;
@@ -14,9 +15,15 @@ import security.MD5Generator;
 
 public class loginBean {
 
+	int userId = -1;
+
 	String email,pass;
 
 	boolean logueado = false;
+
+	public int getUserId() {
+		return userId;
+	}
 
 	public String getEmail() {
 		return email;
@@ -32,6 +39,22 @@ public class loginBean {
 
 	public void setPass(String pass) {
 		this.pass = pass;
+	}
+	
+	public boolean isLogued(){
+		return userId != -1;
+	}
+
+	private final HttpServletRequest httpServletRequest;
+	private final FacesContext faceContext;
+
+	public loginBean(){
+		System.out.println("Started");
+		faceContext=FacesContext.getCurrentInstance();
+		httpServletRequest=(HttpServletRequest)faceContext.getExternalContext().getRequest();
+		if(httpServletRequest.getSession().getAttribute("user_session")!=null){
+			userId=Integer.parseInt(httpServletRequest.getSession().getAttribute("user_session").toString());
+		}
 	}
 
 	public void login(ActionEvent actionEvent) {
@@ -49,6 +72,11 @@ public class loginBean {
 				if(user.isActivated()){
 					msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@", email);
 					logueado = true;
+
+					FacesContext  faceContext=FacesContext.getCurrentInstance();
+					HttpServletRequest httpServletRequest = (HttpServletRequest)faceContext.getExternalContext().getRequest();
+					userId = user.getId();
+					httpServletRequest.getSession().setAttribute("user_session", userId);
 				}else{
 					msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Debes activar tu cuenta primero!");
 				}
@@ -64,11 +92,14 @@ public class loginBean {
 		}
 	}
 
-	public void logout() {
-		HttpSession session = (HttpSession) FacesContext.getCurrentInstance() 
-				.getExternalContext().getSession(false);
-		session.invalidate();
-		logueado = false;
+	public String logout(){
+		
+		if(httpServletRequest.getSession().getAttribute("user_session")!=null){
+			httpServletRequest.getSession().removeAttribute("user_session");
+			userId = -1;
+		}
+		
+		return "index";
 	}
 
 	private User searchInDB(String email,String pass){

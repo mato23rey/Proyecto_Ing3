@@ -21,8 +21,13 @@
 
 				<h:panelGrid columns="2" cellpadding="5" styleClass="textCenter">
 					<h:outputLabel for="email" value="Email" />
-					<p:inputText value="#{loginBean.email}" id="email" required="true"
-						label="email" />
+					<p:inputText value="#{loginBean.email}" id="email"
+						required="true" label="email" requiredMessage="Ingresa tu email"
+						validatorMessage="Mail invalido">
+
+						<f:validateRegex
+							pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+					</p:inputText>
 
 					<h:outputLabel for="password" value="Clave:" />
 					<p:password value="#{loginBean.pass}" id="password" required="true"
