@@ -15,5 +15,7 @@
 		<mapping resource="hibernate/user.hbm.xml" />
 		<mapping resource="hibernate/sucursal.hbm.xml" />
 		<mapping resource="hibernate/pharmacy.hbm.xml" />
+		<mapping resource="hibernate/product.hbm.xml" />
+		<mapping resource="hibernate/product_sucursal.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

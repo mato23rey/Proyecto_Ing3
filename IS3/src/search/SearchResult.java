@@ -5,7 +5,17 @@ import java.util.Random;
 public class SearchResult {
 	String pharmacyName,sucursalName,address;
 	int score = 0;
+	int id;
 	
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getPharmacyName() {
 		return pharmacyName;
 	}

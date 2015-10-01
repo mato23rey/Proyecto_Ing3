@@ -8,7 +8,6 @@
 <h:body onload="getLocation()">
 
 	<h:outputStylesheet library="css" name="index.css" />
-	<h:outputScript library="js" name="index.js" />
 
 	<div style='width: 100%;'>
 		<p:panelGrid columns="3" layout="grid">
@@ -42,42 +41,40 @@
 
 			</p:panelGrid>
 
-
 		</p:panelGrid>
 	</div>
 
-	<div style='width: 100%;' class='textCenter'>
-		<h:outputLabel for="data" value="Farmacia o farmaco" />
-		<p:inputText value="#{searchBean.data}" id="data" label="data"
-			placeholder="Buscar...">
-		</p:inputText>
-	</div>
-
 	<h:form>
-		<p:dataScroller value="#{searchBean.result}" var="result"
-			chunkSize="10">
+		<p:dataScroller value="#{commerceBean.result}" var="result"
+			chunkSize="10" rendered="#{searchBean.withResult}">
 			<f:facet name="header">
-           Farmacias
+           Productos
         </f:facet>
-			<h:panelGrid columns="2" columnClasses="logo,detail">
-				<p:graphicImage value="http://www.brandsoftheworld.com/sites/default/files/styles/logo-thumbnail/public/112011/logo_farmashop_vertical_diapo.png" height="128" width="128"/>
+			<h:panelGrid columns="3" columnClasses="logo,detail">
+				<p:graphicImage
+					value="http://mlu-s1-p.mlstatic.com/perifar-400-espasmo-flex-15849-MLU20110476806_062014-O.jpg"
+					height="128" width="128" />
 
 				<p:outputPanel>
 					<h:panelGrid columns="2" cellpadding="2">
 						<h:outputText value="Nombre:" />
-						<h:outputText value="#{result.id}" style="font-weight: bold" />
+						<h:outputText value="#{result.name}" style="font-weight: bold" />
 
-						<h:outputText value="Direccion:" />
-						<h:outputText value="#{result.email}" style="font-weight: bold" />
+						<h:outputText value="Precio:" />
+						<h:outputText value="$ #{result.price}" style="font-weight: bold" />
 
-						<h:outputText value="Calificacion:" />
-						<p:rating value="#{2}" readonly="true" />
+						<h:outputText value="Descripcion:" />
+						<h:outputText value="#{result.desc}" style="font-weight: bold" />
 					</h:panelGrid>
 				</p:outputPanel>
 
 			</h:panelGrid>
 		</p:dataScroller>
+
+		<p:messages id="messages" showDetail="true" autoUpdate="true"
+			closable="true" rendered="#{!searchBean.withResult}" />
 	</h:form>
+
 
 	<f:metadata>
 		<f:viewParam name="comId" value="#{commerceBean.comId}" />

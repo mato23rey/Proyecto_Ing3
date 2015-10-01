@@ -95,6 +95,7 @@ public class searchBean {
 		for(Object o : querySuc.list()){
 			Sucursal s = (Sucursal)o;
 			SearchResult sR = new SearchResult();
+			sR.setId(s.getId());
 			sR.setAddress(s.getAddress());
 			sR.setSucursalName(s.getName());
 
