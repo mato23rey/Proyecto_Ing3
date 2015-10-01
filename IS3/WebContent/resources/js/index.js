@@ -30,3 +30,7 @@ function updatePosition(pos){
 	document.getElementById("cordsForm:cords").value = pos;
 	document.getElementById("cordsForm:cordsButton").click();
 }
+
+function executeSearch(){
+	window.location = "search.xhtml";
+}

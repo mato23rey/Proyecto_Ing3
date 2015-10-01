@@ -137,7 +137,7 @@ public class loginBean {
 	 */
 	public String logout(){
 
-		if(httpServletRequest.getSession().getAttribute("user_session")!=null){
+		if(httpServletRequest.getSession() != null && httpServletRequest.getSession().getAttribute("user_session")!=null){
 			httpServletRequest.getSession().removeAttribute("user_session");
 			userId = -1;
 		}

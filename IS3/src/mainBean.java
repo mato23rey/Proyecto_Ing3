@@ -85,7 +85,7 @@ public class mainBean {
 	 * @param cords Coordenadas de la dirección donde realizar la búsqueda
 	 */
 	private void searchData(String data,String cords){
-		System.out.println("Searching: "+data);
+		System.out.println("New search: "+data);
 		FacesContext  faceContext=FacesContext.getCurrentInstance();
 		HttpServletRequest httpServletRequest = (HttpServletRequest)faceContext.getExternalContext().getRequest();
 		httpServletRequest.getSession().setAttribute("search_data", data);

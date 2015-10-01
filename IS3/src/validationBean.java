@@ -86,7 +86,7 @@ public class validationBean {
 				session.merge(user);
 				session.flush();
 				t.commit();
-				msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Error",
+				msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "EXITO",
 						"Cuenta validada!");
 				validated = true;
 			}else{

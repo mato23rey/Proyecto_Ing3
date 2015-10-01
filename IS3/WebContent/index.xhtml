@@ -37,13 +37,13 @@
 				rendered="#{loginBean.logued}">
 
 				<h:form>
-					<h:commandButton value="Carrito" action="#{loginBean.logout()}"
-						styleClass="userButton" />
+					<p:commandButton value="Carrito" action="#{loginBean.logout()}"
+						styleClass="userButton" icon="ui-icon-cart" />
 				</h:form>
 
 				<h:form>
-					<h:commandButton value="Cerrar sesion"
-						action="#{loginBean.logout()}" styleClass="userButton" />
+					<p:commandButton value="Salir" action="#{loginBean.logout()}"
+						styleClass="userButton" />
 				</h:form>
 
 			</p:panelGrid>
@@ -54,7 +54,7 @@
 
 	<h:form id='cordsForm' style='display:none'>
 		<h:inputHidden id='cords' value="#{mainBean.cords}" />
-		<h:commandButton value="Welcome Me" id="cordsButton">
+		<h:commandButton value="" id="cordsButton">
 			<f:ajax execute="cords" />
 		</h:commandButton>
 	</h:form>
@@ -84,7 +84,8 @@
 					</p:inputText>
 
 					<p:commandButton id="loginButton" value="Buscar"
-						actionListener="#{mainBean.search}" />
+						actionListener="#{mainBean.search}" icon="ui-icon-search"
+						oncomplete="executeSearch()" />
 				</h:panelGrid>
 			</div>
 
