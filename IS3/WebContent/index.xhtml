@@ -35,11 +35,17 @@
 			<p:panelGrid columns="2" layout="grid"
 				columnClasses="no-border, no-border" styleClass="textCenter"
 				rendered="#{loginBean.logued}">
+				
+				<h:form>
+					<h:commandButton value="Carrito"
+						action="#{loginBean.logout()}" styleClass="userButton" />
+				</h:form>
+				
 				<h:form>
 					<h:commandButton value="Cerrar sesion"
-						action="#{loginBean.logout()}" />
+						action="#{loginBean.logout()}" styleClass="userButton" />
 				</h:form>
-
+				
 			</p:panelGrid>
 
 

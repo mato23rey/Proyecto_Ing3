@@ -32,7 +32,13 @@
 					<h:outputLabel for="password" value="Clave" />
 					<p:password value="#{registerBean.pass}" id="password"
 						required="true" label="password"
-						requiredMessage="Ingresa tu password" />
+						requiredMessage="Ingresa tu password"
+						validatorMessage="La clave debe contener por lo menos una letra mayuscula,un numero o caracter especial y se por lo menos de 6 caracteres">
+
+						<f:validateRegex
+							pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" />
+
+					</p:password>
 
 					<h:outputLabel for="passwordV" value="Repetir clave" />
 					<p:password value="#{registerBean.passVer}" id="passwordV"
