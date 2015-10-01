@@ -8,8 +8,19 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+/**
+ * @author Seba
+ * Clase encargada del envio de emails
+ */
 public class Emailer {
 
+	/**
+	 * Método encargado del envio de emails en base a los parámetros ingresados
+	 * 
+	 * @param to Dirección del destino del correo
+	 * @param subject Asunto del correo a enviar
+	 * @param content Contenido del correo a enviar
+	 */
 	public static void send(String to,String subject,String content){    
 		Properties props = new Properties();
 
@@ -44,13 +55,15 @@ public class Emailer {
 			message.setText(content			
 					,"ISO-8859-1",
 					"html");
-			
+
 			Transport t = session.getTransport("smtp");
-			
-			t.connect("farmya2015@gmail.com","farmya2015UCU");
+
+			//OMFG!!
+			t.connect("farmya2015@gmail.com","farmya2015UCU"); //OMFG!! 
+			//OMFG!!
 			
 			t.sendMessage(message,message.getAllRecipients());
-			
+
 			t.close();
 		}catch(Exception e){
 			e.printStackTrace();

@@ -35,17 +35,17 @@
 			<p:panelGrid columns="2" layout="grid"
 				columnClasses="no-border, no-border" styleClass="textCenter"
 				rendered="#{loginBean.logued}">
-				
+
 				<h:form>
-					<h:commandButton value="Carrito"
-						action="#{loginBean.logout()}" styleClass="userButton" />
+					<h:commandButton value="Carrito" action="#{loginBean.logout()}"
+						styleClass="userButton" />
 				</h:form>
-				
+
 				<h:form>
 					<h:commandButton value="Cerrar sesion"
 						action="#{loginBean.logout()}" styleClass="userButton" />
 				</h:form>
-				
+
 			</p:panelGrid>
 
 
@@ -64,21 +64,22 @@
 		<p:panel header="Solicita tus medicamentos online"
 			styleClass="textCenter">
 			<div class='searchTool'>
-				<h:panelGrid columns="5" cellpadding="5" style='text-aling:center;'>
+				<h:panelGrid columns="5" cellpadding="5" styleClass="textCenter">
 
 					<h:outputLabel for="address" value="Tu direccion" />
 
 					<p:inputText value="#{mainBean.address}" id="address"
 						required="true" label="address"
 						validatorMessage="Check your address"
-						placeholder="Ej: 18 de Julio 1266" requiredMessage="Ingresa tu direccion">
-						
+						placeholder="Ej: 18 de Julio 1266"
+						requiredMessage="Ingresa tu direccion">
+
 					</p:inputText>
 
 					<h:outputLabel for="data" value="Farmacia o farmaco" />
 
-					<p:inputText value="#{mainBean.data}" id="data"
-						label="data" placeholder="Opcional">
+					<p:inputText value="#{mainBean.data}" id="data" label="data"
+						placeholder="Opcional">
 
 					</p:inputText>
 
@@ -91,8 +92,6 @@
 		<p:messages id="messages" showDetail="true" autoUpdate="true"
 			closable="true" />
 	</h:form>
-
-
 
 </h:body>
 

@@ -11,43 +11,81 @@ import org.primefaces.context.RequestContext;
 import hibernate.User;
 import security.MD5Generator;
 
+/**
+ * @author Seba
+ *	Clase que se utiliza para manejar el sistema de login de la aplicación
+ */
 public class loginBean {
 
+	/**
+	 * ID del usuario que se encuentra logueado, -1 para indicar que no hay nadie logueado. Sirve para renderizar correctamente la página
+	 */
 	int userId = -1;
 
+	/**
+	 * Email del usuario que desea loguearse
+	 */
+	/**
+	 * Passsword del usuario que desea loguarse
+	 */
 	String email,pass;
 
+	/**
+	 * Variable de control para uso de JS
+	 */
 	boolean logueado = false;
 
+	/**
+	 * @return ID del usuario logueado
+	 */
 	public int getUserId() {
 		return userId;
 	}
 
+	/**
+	 * @return Email del usuario a loguear
+	 */
 	public String getEmail() {
 		return email;
 	}
 
+	/**
+	 * @param email Email del usuario a loguear
+	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+	/**
+	 * @return Password del usuario a loguear
+	 */
 	public String getPass() {
 		return pass;
 	}
 
+	/**
+	 * @param pass Password del usuario a loguear
+	 */
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
-	
+
+	/**
+	 * Función que permite determinar si hay un usuario logueado o no. Sirve para renderizar correctamente la página principal
+	 * @return Booleano indicando si existe un usuario logueado o no
+	 */
 	public boolean isLogued(){
 		return userId != -1;
 	}
 
+
 	private final HttpServletRequest httpServletRequest;
 	private final FacesContext faceContext;
 
+	/**
+	 * Constructor de la clase. Se establece el valor de sesión del usuario
+	 */
 	public loginBean(){
-		System.out.println("Started");
 		faceContext=FacesContext.getCurrentInstance();
 		httpServletRequest=(HttpServletRequest)faceContext.getExternalContext().getRequest();
 		if(httpServletRequest.getSession().getAttribute("user_session")!=null){
@@ -55,6 +93,10 @@ public class loginBean {
 		}
 	}
 
+	/**
+	 * Método de acceso para realizar el login
+	 * @param actionEvent evento del sistema
+	 */
 	public void login(ActionEvent actionEvent) {
 
 		logueado = false;
@@ -64,7 +106,7 @@ public class loginBean {
 				"Credenciales no válidas");
 
 		if (email != null && pass != null) {
-			User user = searchInDB(email,pass);
+			User user = searchInDB(email);
 
 			if(user != null && user.getPassword().equals(MD5Generator.generate(pass))){
 				if(user.isActivated()){
@@ -90,17 +132,24 @@ public class loginBean {
 		}
 	}
 
+	/**Método de acceso para realizar el logout
+	 * @return String indicando a donde redireccionar la página
+	 */
 	public String logout(){
-		
+
 		if(httpServletRequest.getSession().getAttribute("user_session")!=null){
 			httpServletRequest.getSession().removeAttribute("user_session");
 			userId = -1;
 		}
-		
+
 		return "index";
 	}
 
-	private User searchInDB(String email,String pass){
+	/**Método que sirve para encontrar un usuario en base a su dirección de email
+	 * @param email Email del usuario
+	 * @return Usuario en caso de encontrarse un usuario con el email ingresado
+	 */
+	private User searchInDB(String email){
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.getCurrentSession();
 
@@ -117,7 +166,5 @@ public class loginBean {
 			session.getTransaction().rollback();
 			return null;
 		}
-
 	}
-
 }

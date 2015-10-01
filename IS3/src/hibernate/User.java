@@ -1,5 +1,9 @@
 package hibernate;
 
+/**
+ * @author Seba
+ * Clase que representa un usuario del sistema
+ */
 public class User {
 
 	int id;

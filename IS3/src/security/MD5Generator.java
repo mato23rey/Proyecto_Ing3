@@ -1,7 +1,15 @@
 package security;
 
+/**
+ * @author Seba
+ * Clase que sirve para encriptar utilizando el sistema MD5
+ */
 public class MD5Generator {
 
+	/** Método que genera la encriptación MD5 de una cadena de texto ingresada
+	 * @param key Texto a encriptar
+	 * @return Texto encriptado
+	 */
 	public static String generate(String key){
 
 		try {

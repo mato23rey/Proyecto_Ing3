@@ -11,40 +11,70 @@ import org.primefaces.context.RequestContext;
 
 import hibernate.User;
 
+/**
+ * @author Seba
+ *
+ */
 public class validationBean {
 
+	/**
+	 * Codigo de verificación de la cuenta a validar
+	 */
+	/**
+	 * Email de la cuenta a validar
+	 */
 	String validationCode,email;
+
 	boolean validated = false;
 
+	/**
+	 * @return Email de la cuenta a validar
+	 */
 	public String getEmail() {
 		return email;
 	}
 
+	/**
+	 * @param email Email de la cuenta a validar
+	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+	/**
+	 * @return Codigo de verificación de la cuenta a validar
+	 */
 	public String getValidationCode() {
 		return validationCode;
 	}
 
+	/**
+	 * @param validationCode Codigo de verificación de la cuenta a validar
+	 */
 	public void setValidationCode(String validationCode) {
 		this.validationCode = validationCode;
 	}
 
+	/**
+	 * Método que indica si una cuenta esta validada o no
+	 * @return Estado de validación de la cuenta
+	 */
 	public boolean isValidated() {
 		return validated;
 	}
+
 
 	public void setValidated(boolean validated) {
 		this.validated = validated;
 	}
 
+	/**
+	 * Método de acceso para realizar la validación
+	 * @param actionEvent Evento del sistema
+	 */
 	public void validate(ActionEvent actionEvent){
 		RequestContext context = RequestContext.getCurrentInstance();
 		FacesMessage msg = null;
-
-		System.out.println("Validating: "+email+" "+validationCode);
 
 		if(validationCode != null && email != null){
 			User user = validateAccount(email,validationCode);
@@ -72,6 +102,13 @@ public class validationBean {
 	}
 
 
+	/**
+	 * Método encargado de la validación de la cuenta
+	 * 
+	 * @param email Email de la cuenta a validar
+	 * @param code Código de verificación de la cuenta a validar
+	 * @return Usuario que coincida con el email y el código de validación
+	 */
 	private User validateAccount(String email,String code){
 		Session session = getSession();
 		try {
@@ -89,6 +126,7 @@ public class validationBean {
 			return null;
 		}
 	}
+
 
 	private Session getSession(){
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
