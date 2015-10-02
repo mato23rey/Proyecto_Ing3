@@ -38,7 +38,7 @@
 	<managed-bean>
 		<managed-bean-name>commerceBean</managed-bean-name>
 		<managed-bean-class>commerceBean</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
+		<managed-bean-scope>view</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>cartBean</managed-bean-name>

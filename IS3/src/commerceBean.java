@@ -1,21 +1,25 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
 import hibernate.Product;
 import hibernate.Product_Sucursal;
 
-public class commerceBean {
+public class commerceBean implements Serializable{
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
 	List<Product> result;
 	int comId;
 
@@ -43,13 +47,6 @@ public class commerceBean {
 
 	public commerceBean(){
 
-	}
-	
-	public void addItemToCart(ActionEvent actionEvent) {
-		System.out.println("ADD ITEM!!");
-		Product p = (Product)actionEvent.getComponent().getAttributes().get("item");
-		System.out.println(p);
-		System.out.println("NEW PRODUCT: "+p.getName());
 	}
 
 	private void loadProducts(int comId){
@@ -80,6 +77,6 @@ public class commerceBean {
 		}
 	}
 
-	
-	
+
+
 }

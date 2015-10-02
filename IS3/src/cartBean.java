@@ -27,23 +27,22 @@ public class cartBean {
 		System.out.println("ADD ITEM!!");
 
 	}
-	
+
 	public void addItem(ActionEvent event){
 		System.out.println("ADD ITEM");
 		Product p = (Product)event.getComponent().getAttributes().get("item");
-		System.out.println(p);
-		System.out.println("NEW PRODUCT: "+p.getName());
 
-	}
-
-
-
-	public void add2Item(CartItem item){
-		cart.add(item);
+		CartItem cI = new CartItem();
+		cI.setProduct(p);
+		cI.setCant(2);
+		cart.add(cI);
 		calculateTotal();
 	}
 
-	public void removeItem(CartItem item){
+	public void removeItem(ActionEvent event){
+		System.out.println("REMOVE");
+		CartItem item = (CartItem)event.getComponent().getAttributes().get("item");
+		System.out.println("REMOVE "+item.getProductName());
 		cart.remove(item);
 		calculateTotal();
 	}

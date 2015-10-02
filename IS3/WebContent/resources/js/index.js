@@ -36,3 +36,8 @@ function executeSearch(xhr, status, args) {
 		window.location = "search.xhtml";
 	}
 }
+
+function done(xhr, status, args){
+	alert(args.validationFailed);
+	alert(args.target);
+}
