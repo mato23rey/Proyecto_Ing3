@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-10-2015 a las 23:10:13
+-- Tiempo de generación: 02-10-2015 a las 23:42:44
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -51,14 +51,16 @@ CREATE TABLE IF NOT EXISTS `phsucursal` (
   `name` varchar(50) NOT NULL,
   `address` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Volcado de datos para la tabla `phsucursal`
 --
 
 INSERT INTO `phsucursal` (`id`, `pharmacy_id`, `name`, `address`) VALUES
-(1, 1, 'Sucursal 1', '8 de Octubre 2738');
+(1, 1, 'Sucursal 1', '8 de Octubre 2738'),
+(2, 1, 'Sucursal 2', 'Echeandia 2788'),
+(3, 1, 'Sucursal 3', 'Javier Barrior Amorin 1139');
 
 -- --------------------------------------------------------
 
@@ -73,7 +75,15 @@ CREATE TABLE IF NOT EXISTS `product` (
   `price` float NOT NULL,
   `desc` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `product`
+--
+
+INSERT INTO `product` (`id`, `pharmacy_id`, `name`, `price`, `desc`) VALUES
+(1, 1, 'Product 1', 10, 'Hola Mundo?'),
+(2, 1, 'Producto 2', 50, 'Perifar 600 flexz ultra');
 
 -- --------------------------------------------------------
 
@@ -83,8 +93,17 @@ CREATE TABLE IF NOT EXISTS `product` (
 
 CREATE TABLE IF NOT EXISTS `product_sucursal` (
   `product_id` int(11) NOT NULL,
-  `sucursal_id` int(11) NOT NULL
+  `sucursal_id` int(11) NOT NULL,
+  PRIMARY KEY (`product_id`,`sucursal_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `product_sucursal`
+--
+
+INSERT INTO `product_sucursal` (`product_id`, `sucursal_id`) VALUES
+(1, 1),
+(2, 1);
 
 -- --------------------------------------------------------
 
@@ -93,12 +112,14 @@ CREATE TABLE IF NOT EXISTS `product_sucursal` (
 --
 
 CREATE TABLE IF NOT EXISTS `sale` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL,
   `user_id` int(11) NOT NULL,
-  `comment` int(11) NOT NULL,
-  `score` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `address` varchar(50) NOT NULL,
+  `comment` text NOT NULL,
+  `score` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -108,7 +129,8 @@ CREATE TABLE IF NOT EXISTS `sale` (
 
 CREATE TABLE IF NOT EXISTS `sale_product` (
   `sale_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL
+  `product_id` int(11) NOT NULL,
+  PRIMARY KEY (`sale_id`,`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
