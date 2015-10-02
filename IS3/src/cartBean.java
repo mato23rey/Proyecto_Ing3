@@ -1,11 +1,18 @@
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import cart.CartItem;
 import hibernate.Product;
 
 public class cartBean {
+
+	private UIComponent orderMessage;
+
 
 	List<CartItem> cart;
 	float total;
@@ -16,6 +23,14 @@ public class cartBean {
 
 	public float getTotal() {
 		return total;
+	}
+
+	public UIComponent getOrderMessage() {
+		return orderMessage;
+	}
+
+	public void setOrderMessage(UIComponent orderMessage) {
+		this.orderMessage = orderMessage;
 	}
 
 	public cartBean() {
@@ -42,9 +57,38 @@ public class cartBean {
 	public void removeItem(ActionEvent event){
 		System.out.println("REMOVE");
 		CartItem item = (CartItem)event.getComponent().getAttributes().get("item");
-		System.out.println("REMOVE "+item.getProductName());
 		cart.remove(item);
 		calculateTotal();
+	}
+
+	public void requestOrder(ActionEvent event){
+		System.out.println("ASKING");
+		FacesMessage msg  = new FacesMessage(FacesMessage.SEVERITY_INFO, "Exito", "Pedido realizado");
+
+		boolean isLogued = (boolean) event.getComponent().getAttributes().get("logued");
+		if(isLogued){
+			if(cart.size() != 0){
+				clearCart();
+				System.out.println("Pedido realizado");
+			}else{
+				msg  = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Debes loguearte primero");
+			}
+
+		}else{
+			msg  = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Debes loguearte primero");
+		}
+		FacesContext.getCurrentInstance().addMessage("orderMessages", msg);
+
+	}
+
+	public void cancelOrder(ActionEvent event){
+		System.out.println("CANCEL");
+		clearCart();
+	}
+
+	private void clearCart(){
+		cart.clear();
+		total = 0;
 	}
 
 	private void calculateTotal(){
@@ -54,5 +98,7 @@ public class cartBean {
 		}
 		this.total = total;
 	}
+
+
 
 }

@@ -9,6 +9,7 @@
 <h:body>
 
 	<h:outputStylesheet library="css" name="index.css" />
+	<h:outputScript library="js" name="cart.js" />
 
 	<ui:insert name="header">
 		<ui:include src="header.xhtml" />
@@ -118,25 +119,28 @@
 						<div class="ui-grid ui-grid-responsive textCenter">
 							<div class="ui-grid-row">
 								<div class="ui-grid-col-6">
-									<p:button value='Pedir' icon="ui-icon-circle-check"></p:button>
+									<p:commandButton value='Pedir' icon="ui-icon-circle-check"
+										actionListener="#{cartBean.requestOrder}"
+										oncomplete="onRequest(xhr, status, args)">
+										<f:attribute name="logued" value="#{loginBean.logued}" />
+									</p:commandButton>
 								</div>
 								<div class="ui-grid-col-6">
-									<p:button value='Cancelar' icon="ui-icon-circle-close"></p:button>
+									<p:commandButton value='Cancelar' icon="ui-icon-circle-close"
+										actionListener="#{cartBean.cancelOrder}"
+										oncomplete="location.reload()" />
 								</div>
 							</div>
 						</div>
 
 					</f:facet>
 				</p:panel>
-
+				<div id='orderMessages'></div>
+				<p:messages for="orderMessages" showDetail="true" autoUpdate="true"
+					closable="true" />
 			</div>
 		</div>
 	</div>
-
-	<p:messages id="messages" showDetail="true" autoUpdate="true"
-		closable="true" />
-
-
 
 	<f:metadata>
 		<f:viewParam name="comId" value="#{commerceBean.comId}" />
