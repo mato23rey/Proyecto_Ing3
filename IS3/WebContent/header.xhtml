@@ -18,14 +18,13 @@
 				<div class="ui-grid-col-6"></div>
 				<div class="ui-grid-col-4">
 
-
 					<h:form rendered="#{!loginBean.logued}">
 
 						<div class="ui-grid ui-grid-responsive">
 							<div class="ui-grid-row">
 								<div class="ui-grid-col-6">
 									<p:commandLink action="login" value="Ingresar"
-										styleClass="userButton" />
+										styleClass="userButton" oncomplete="lastUrl = window.location" />
 								</div>
 								<div class="ui-grid-col-6">
 									<p:commandLink action="register" value="Registrarse"
@@ -38,7 +37,7 @@
 
 					<h:form rendered="#{loginBean.logued}">
 						<p:commandLink value="Salir" action="#{loginBean.logout()}"
-							styleClass="userButton" />
+							styleClass="userButton" oncomplete="window.location = 'index.xhtml'"/>
 					</h:form>
 
 

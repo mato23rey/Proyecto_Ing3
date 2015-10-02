@@ -7,7 +7,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.primefaces.context.RequestContext;
-
 import hibernate.User;
 import security.MD5Generator;
 
@@ -16,6 +15,8 @@ import security.MD5Generator;
  *	Clase que se utiliza para manejar el sistema de login de la aplicación
  */
 public class loginBean {
+
+	String redirectUrl;
 
 	/**
 	 * ID del usuario que se encuentra logueado, -1 para indicar que no hay nadie logueado. Sirve para renderizar correctamente la página
@@ -98,7 +99,6 @@ public class loginBean {
 	 * @param actionEvent evento del sistema
 	 */
 	public void login(ActionEvent actionEvent) {
-
 		logueado = false;
 
 		RequestContext context = RequestContext.getCurrentInstance();
@@ -136,10 +136,10 @@ public class loginBean {
 	 * @return String indicando a donde redireccionar la página
 	 */
 	public String logout(){
-
+		System.out.println("LOGOUT");
+		userId = -1;
 		if(httpServletRequest.getSession() != null && httpServletRequest.getSession().getAttribute("user_session")!=null){
 			httpServletRequest.getSession().removeAttribute("user_session");
-			userId = -1;
 		}
 
 		return "index";

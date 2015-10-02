@@ -1,3 +1,5 @@
+var lastUrl = null;
+
 function getLocation() {
 	if (navigator.geolocation) {
 		//	navigator.geolocation.getCurrentPosition(showPosition);
@@ -35,9 +37,4 @@ function executeSearch(xhr, status, args) {
 	if (!args.validationFailed) {
 		window.location = "search.xhtml";
 	}
-}
-
-function done(xhr, status, args){
-	alert(args.validationFailed);
-	alert(args.target);
 }

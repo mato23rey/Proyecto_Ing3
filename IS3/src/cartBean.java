@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
@@ -10,10 +9,6 @@ import cart.CartItem;
 import hibernate.Product;
 
 public class cartBean {
-
-	private UIComponent orderMessage;
-
-
 	List<CartItem> cart;
 	float total;
 
@@ -25,16 +20,8 @@ public class cartBean {
 		return total;
 	}
 
-	public UIComponent getOrderMessage() {
-		return orderMessage;
-	}
-
-	public void setOrderMessage(UIComponent orderMessage) {
-		this.orderMessage = orderMessage;
-	}
-
 	public cartBean() {
-		System.out.println("Creating cart!!!!!!!!!!!!!!!!!");
+		System.out.println("Creating cart");
 		cart = new ArrayList<CartItem>();
 	}
 
