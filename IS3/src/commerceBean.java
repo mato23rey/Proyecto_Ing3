@@ -3,6 +3,7 @@ import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -17,7 +18,6 @@ public class commerceBean {
 
 	List<Product> result;
 	int comId;
-
 
 	public int getComId() {
 		return comId;
@@ -44,10 +44,15 @@ public class commerceBean {
 	public commerceBean(){
 
 	}
+	
+	public void addItemToCart(ActionEvent actionEvent) {
+		System.out.println("ADD ITEM!!");
+		Product p = (Product)actionEvent.getComponent().getAttributes().get("item");
+		System.out.println(p);
+		System.out.println("NEW PRODUCT: "+p.getName());
+	}
 
 	private void loadProducts(int comId){
-		System.out.println("Loading products from: "+comId);
-
 		result = new ArrayList<Product>();
 
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
@@ -75,4 +80,6 @@ public class commerceBean {
 		}
 	}
 
+	
+	
 }

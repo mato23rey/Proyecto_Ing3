@@ -29,39 +29,9 @@
 	<h:form>
 		<p:panel header="Solicita tus medicamentos online"
 			styleClass="textCenter">
-
-			<div class="ui-grid ui-grid-responsive">
-				<div class="ui-grid-row">
-					<div class="ui-grid-col-4">
-						<h:outputLabel for="address" value="Tu direccion " />
-
-						<p:inputText value="#{mainBean.address}" id="address"
-							required="true" label="address"
-							validatorMessage="Comprueba tu direccion"
-							placeholder="Ej: 18 de Julio 1266"
-							requiredMessage="Ingresa tu direccion">
-
-						</p:inputText>
-					</div>
-					<div class="ui-grid-col-4">
-						<h:outputLabel for="data" value="Farmacia o farmaco " />
-
-						<p:inputText value="#{mainBean.data}" id="data" label="data"
-							placeholder="Opcional">
-
-						</p:inputText>
-					</div>
-					<div class="ui-grid-col-4">
-						<p:commandButton id="searchButton" value="Buscar"
-							actionListener="#{mainBean.search}" icon="ui-icon-search"
-							oncomplete="executeSearch(xhr, status, args)" />
-					</div>
-				</div>
-			</div>
-
-
-
-
+			<ui:insert name="searchTool">
+				<ui:include src="searchTool.xhtml" />
+			</ui:insert>
 		</p:panel>
 		<p:messages id="messages" showDetail="true" autoUpdate="true"
 			closable="true" />

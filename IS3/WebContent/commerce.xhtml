@@ -14,122 +14,126 @@
 		<ui:include src="header.xhtml" />
 	</ui:insert>
 
-	<h:form>
 
-		<div class="ui-grid ui-grid-responsive">
-			<div class="ui-grid-row">
-				<div class="ui-grid-col-8">
-					<p:dataScroller value="#{commerceBean.result}" var="result"
-						chunkSize="10" rendered="#{searchBean.withResult}">
-						<f:facet name="header">
+
+	<div class="ui-grid ui-grid-responsive">
+		<div class="ui-grid-row">
+			<div class="ui-grid-col-8">
+				<p:dataScroller value="#{commerceBean.result}" var="result"
+					chunkSize="10">
+					<f:facet name="header">
            			Productos
        			</f:facet>
-						<p:panel>
-							<div class="ui-grid ui-grid-responsive">
-								<div class="ui-grid-row">
-									<div class="ui-grid-col-3">
-										<p:graphicImage
-											value="http://mlu-s1-p.mlstatic.com/perifar-400-espasmo-flex-15849-MLU20110476806_062014-O.jpg"
-											height="128" width="128" />
-									</div>
-
-									<div class="ui-grid-col-6">
-										<p:outputPanel>
-											<h:panelGrid columns="2" cellpadding="2">
-												<h:outputText value="Nombre:" />
-												<h:outputText value="#{result.name}"
-													style="font-weight: bold" />
-
-												<h:outputText value="Precio:" />
-												<h:outputText value="$#{result.price}"
-													style="font-weight: bold" />
-
-												<h:outputText value="Descripcion:" />
-												<h:outputText value="#{result.desc}"
-													style="font-weight: bold" />
-											</h:panelGrid>
-										</p:outputPanel>
-									</div>
-
-									<div class="ui-grid-col-3 textCenter">
-										<p:commandButton actionListener="#{searchBean.selectCommerce}"
-											value="Adquirir" icon="ui-icon-plusthick"
-											oncomplete="displayCommerce(xhr, status, args)">
-										</p:commandButton>
-									</div>
+					<p:panel>
+						<div class="ui-grid ui-grid-responsive">
+							<div class="ui-grid-row">
+								<div class="ui-grid-col-3">
+									<p:graphicImage
+										value="http://mlu-s1-p.mlstatic.com/perifar-400-espasmo-flex-15849-MLU20110476806_062014-O.jpg"
+										height="128" width="128" />
 								</div>
+
+								<div class="ui-grid-col-6">
+									<p:outputPanel>
+										<h:panelGrid columns="2" cellpadding="2">
+											<h:outputText value="Nombre:" />
+											<h:outputText value="#{result.name}"
+												style="font-weight: bold" />
+
+											<h:outputText value="Precio:" />
+											<h:outputText value="$#{result.price}"
+												style="font-weight: bold" />
+
+											<h:outputText value="Descripcion:" />
+											<h:outputText value="#{result.desc}"
+												style="font-weight: bold" />
+										</h:panelGrid>
+									</p:outputPanel>
+								</div>
+
+								<h:form>
+									<div class="ui-grid-col-3 textCenter">
+										<h:commandButton
+											actionListener="#{commerceBean.addItemToCart}"
+											value="Adquirir" icon="ui-icon-plusthick"
+											styleClass="ui-priority-primary">
+
+											<f:attribute name="item" value="#{result}" />
+										</h:commandButton>
+									</div>
+								</h:form>
 							</div>
+						</div>
 
-						</p:panel>
-					</p:dataScroller>
-				</div>
+					</p:panel>
+				</p:dataScroller>
+			</div>
 
-				<div class="ui-grid-col-4">
-					<p:dataScroller value="#{commerceBean.result}" var="result"
-						chunkSize="10" rendered="#{searchBean.withResult}">
-						<f:facet name="header">
+			<div class="ui-grid-col-4">
+				<p:dataScroller value="#{cartBean.cart}" var="cart" chunkSize="10">
+					<f:facet name="header">
            			Mi pedido
        			</f:facet>
-						<p:panel>
-							<div class="ui-grid ui-grid-responsive">
-								<div class="ui-grid-row">
-									<div class="ui-grid-col-6">
-										<p:outputPanel>
-											<h:panelGrid columns="2" cellpadding="2">
-												<h:outputText value="Nombre:" />
-												<h:outputText value="#{result.name}"
-													style="font-weight: bold" />
+					<p:panel>
+						<div class="ui-grid ui-grid-responsive">
+							<div class="ui-grid-row">
+								<div class="ui-grid-col-6">
+									<p:outputPanel>
+										<h:panelGrid columns="2" cellpadding="2">
+											<h:outputText value="Nombre:" />
+											<h:outputText value="#{cart.name}" style="font-weight: bold" />
 
-												<h:outputText value="Precio:" />
-												<h:outputText value="$#{result.price}"
-													style="font-weight: bold" />
+											<h:outputText value="Precio:" />
+											<h:outputText value="$#{cart.price}"
+												style="font-weight: bold" />
 
-												<h:outputText value="Cantidad" />
-												<h:outputText value="$#{5}" style="font-weight: bold" />
+											<h:outputText value="Cantidad" />
+											<h:outputText value="#{cart.cant}" style="font-weight: bold" />
 
-												<h:outputText value="Total" />
-												<h:outputText value="$#{50}" style="font-weight: bold" />
-											</h:panelGrid>
-										</p:outputPanel>
-									</div>
+											<h:outputText value="Total" />
+											<h:outputText value="$#{cart.total}"
+												style="font-weight: bold" />
+										</h:panelGrid>
+									</p:outputPanel>
+								</div>
 
-									<div class="ui-grid-col-6 textCenter">
-										<p:commandButton actionListener="#{searchBean.selectCommerce}"
-											value="Eliminar" icon="ui-icon-closethick"
-											oncomplete="displayCommerce(xhr, status, args)">
-										</p:commandButton>
-									</div>
+								<div class="ui-grid-col-6 textCenter">
+									<p:commandButton actionListener="#{cartBean.addItem}"
+										value="Eliminar" icon="ui-icon-closethick"
+										oncomplete="displayCommerce(xhr, status, args)">
+									</p:commandButton>
 								</div>
 							</div>
+						</div>
 
-						</p:panel>
-
-					</p:dataScroller>
-					<p:panel styleClass="textCenter">
-						<h:outputText value="Total: " />
-						<h:outputText value="$#{50}" style="font-weight: bold" />
-						<f:facet name="footer">
-							<div class="ui-grid ui-grid-responsive textCenter">
-								<div class="ui-grid-row">
-									<div class="ui-grid-col-6">
-										<p:button value='Pedir' icon="ui-icon-circle-check"></p:button>
-									</div>
-									<div class="ui-grid-col-6">
-										<p:button value='Cancelar' icon="ui-icon-circle-close"></p:button>
-									</div>
-								</div>
-							</div>
-
-						</f:facet>
 					</p:panel>
 
-				</div>
+				</p:dataScroller>
+				<p:panel styleClass="textCenter">
+					<h:outputText value="Total: " />
+					<h:outputText value="$#{50}" style="font-weight: bold" />
+					<f:facet name="footer">
+						<div class="ui-grid ui-grid-responsive textCenter">
+							<div class="ui-grid-row">
+								<div class="ui-grid-col-6">
+									<p:button value='Pedir' icon="ui-icon-circle-check"></p:button>
+								</div>
+								<div class="ui-grid-col-6">
+									<p:button value='Cancelar' icon="ui-icon-circle-close"></p:button>
+								</div>
+							</div>
+						</div>
+
+					</f:facet>
+				</p:panel>
+
 			</div>
 		</div>
+	</div>
 
-		<p:messages id="messages" showDetail="true" autoUpdate="true"
-			closable="true" rendered="#{!searchBean.withResult}" />
-	</h:form>
+	<p:messages id="messages" showDetail="true" autoUpdate="true"
+		closable="true" />
+
 
 
 	<f:metadata>

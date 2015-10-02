@@ -24,11 +24,11 @@
 						<div class="ui-grid ui-grid-responsive">
 							<div class="ui-grid-row">
 								<div class="ui-grid-col-6">
-									<p:commandButton action="login" value="Ingresar"
+									<p:commandLink action="login" value="Ingresar"
 										styleClass="userButton" />
 								</div>
 								<div class="ui-grid-col-6">
-									<p:commandButton action="register" value="Registrarse"
+									<p:commandLink action="register" value="Registrarse"
 										styleClass="userButton" />
 								</div>
 							</div>
@@ -37,7 +37,7 @@
 					</h:form>
 
 					<h:form rendered="#{loginBean.logued}">
-						<p:commandButton value="Salir" action="#{loginBean.logout()}"
+						<p:commandLink value="Salir" action="#{loginBean.logout()}"
 							styleClass="userButton" />
 					</h:form>
 
