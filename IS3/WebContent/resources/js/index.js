@@ -1,6 +1,6 @@
 function getLocation() {
 	if (navigator.geolocation) {
-	//	navigator.geolocation.getCurrentPosition(showPosition);
+		//	navigator.geolocation.getCurrentPosition(showPosition);
 	} else {
 		alert("Geolocation is not supported by this browser.");
 	}
@@ -31,6 +31,8 @@ function updatePosition(pos){
 	document.getElementById("cordsForm:cordsButton").click();
 }
 
-function executeSearch(){
-	window.location = "search.xhtml";
+function executeSearch(xhr, status, args) {
+	if (!args.validationFailed) {
+		window.location = "search.xhtml";
+	}
 }

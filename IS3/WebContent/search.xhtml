@@ -1,51 +1,20 @@
 <html xmlns="http://www.w3c.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<title>Farmacia Ya</title>
 </h:head>
-<h:body onload="getLocation()">
+<h:body>
 
 	<h:outputStylesheet library="css" name="index.css" />
 	<h:outputScript library="js" name="search.js" />
 	<h:outputScript library="js" name="index.js" />
 
-	<div style='width: 100%;'>
-		<p:panelGrid columns="3" layout="grid">
-			<h:graphicImage library="img" name="pYLogo.png" height="60"
-				width="150" />
-
-			<h:outputText value="" />
-
-			<p:panelGrid columns="2" layout="grid"
-				columnClasses="no-border, no-border" styleClass="textCenter"
-				rendered="#{!loginBean.logued}">
-				<h:form>
-					<h:commandButton action="login" value="Ingresar"
-						styleClass="userButton" />
-				</h:form>
-
-				<h:form>
-					<h:commandButton action="register" value="Registrarse"
-						styleClass="userButton" />
-				</h:form>
-			</p:panelGrid>
-
-
-			<p:panelGrid columns="2" layout="grid"
-				columnClasses="no-border, no-border" styleClass="textCenter"
-				rendered="#{loginBean.logued}">
-				<h:form>
-					<h:commandButton value="Cerrar sesion"
-						action="#{loginBean.logout()}" />
-				</h:form>
-
-			</p:panelGrid>
-
-
-		</p:panelGrid>
-	</div>
+	<ui:insert name="header">
+		<ui:include src="header.xhtml" />
+	</ui:insert>
 
 	<div style='width: 100%;' class='textCenter'>
 		<h:form>
@@ -65,34 +34,41 @@
 			<f:facet name="header">
            Farmacias
         </f:facet>
-			<h:panelGrid columns="3" columnClasses="logo,detail">
-				<p:graphicImage
-					value="http://www.brandsoftheworld.com/sites/default/files/styles/logo-thumbnail/public/112011/logo_farmashop_vertical_diapo.png"
-					height="128" width="128" />
+			<p:panel>
+				<div class="ui-grid ui-grid-responsive">
+					<div class="ui-grid-row">
+						<div class="ui-grid-col-2">
+							<p:graphicImage
+								value="http://www.brandsoftheworld.com/sites/default/files/styles/logo-thumbnail/public/112011/logo_farmashop_vertical_diapo.png"
+								height="128" width="128" />
+						</div>
+						<div class="ui-grid-col-4">
+							<p:outputPanel>
+								<h:panelGrid columns="2" cellpadding="2">
+									<h:outputText value="Nombre:" />
+									<h:outputText
+										value="#{result.pharmacyName} #{result.sucursalName}"
+										style="font-weight: bold" />
 
-				<p:outputPanel>
-					<h:panelGrid columns="2" cellpadding="2">
-						<h:outputText value="Nombre:" />
-						<h:outputText
-							value="#{result.pharmacyName} #{result.sucursalName}"
-							style="font-weight: bold" />
+									<h:outputText value="Direccion:" />
+									<h:outputText value="#{result.address}"
+										style="font-weight: bold" />
 
-						<h:outputText value="Direccion:" />
-						<h:outputText value="#{result.address}" style="font-weight: bold" />
-
-						<h:outputText value="Calificacion:" />
-						<p:rating value="#{result.score}" readonly="true" />
-					</h:panelGrid>
-				</p:outputPanel>
-
-				<p:commandButton actionListener="#{searchBean.selectCommerce}"
-					value="Ver Productos" icon="ui-icon-tag"
-					oncomplete="displayCommerce(xhr, status, args)">
-					<f:attribute name="comId" value="#{result.id}" />
-				</p:commandButton>
-
-
-			</h:panelGrid>
+									<h:outputText value="Calificacion:" />
+									<p:rating value="#{result.score}" readonly="true" />
+								</h:panelGrid>
+							</p:outputPanel>
+						</div>
+						<div class="ui-grid-col-4">
+							<p:commandButton actionListener="#{searchBean.selectCommerce}"
+								value="Ver Productos" icon="ui-icon-tag"
+								oncomplete="displayCommerce(xhr, status, args)">
+								<f:attribute name="comId" value="#{result.id}" />
+							</p:commandButton>
+						</div>
+					</div>
+				</div>
+			</p:panel>
 		</p:dataScroller>
 
 		<p:messages id="messages" showDetail="true" autoUpdate="true"

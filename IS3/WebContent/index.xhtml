@@ -1,6 +1,7 @@
 <html xmlns="http://www.w3c.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Farmacia Ya</title>
@@ -10,47 +11,9 @@
 	<h:outputStylesheet library="css" name="index.css" />
 	<h:outputScript library="js" name="index.js" />
 
-	<div style='width: 100%;'>
-		<p:panelGrid columns="3" layout="grid">
-			<h:graphicImage library="img" name="pYLogo.png" height="60"
-				width="150" />
-
-			<h:outputText value="" />
-
-			<p:panelGrid columns="2" layout="grid"
-				columnClasses="no-border, no-border" styleClass="textCenter"
-				rendered="#{!loginBean.logued}">
-				<h:form>
-					<h:commandButton action="login" value="Ingresar"
-						styleClass="userButton" />
-				</h:form>
-
-				<h:form>
-					<h:commandButton action="register" value="Registrarse"
-						styleClass="userButton" />
-				</h:form>
-			</p:panelGrid>
-
-
-			<p:panelGrid columns="2" layout="grid"
-				columnClasses="no-border, no-border" styleClass="textCenter"
-				rendered="#{loginBean.logued}">
-
-				<h:form>
-					<p:commandButton value="Carrito" action="#{loginBean.logout()}"
-						styleClass="userButton" icon="ui-icon-cart" />
-				</h:form>
-
-				<h:form>
-					<p:commandButton value="Salir" action="#{loginBean.logout()}"
-						styleClass="userButton" />
-				</h:form>
-
-			</p:panelGrid>
-
-
-		</p:panelGrid>
-	</div>
+	<ui:insert name="header">
+		<ui:include src="header.xhtml" />
+	</ui:insert>
 
 	<h:form id='cordsForm' style='display:none'>
 		<h:inputHidden id='cords' value="#{mainBean.cords}" />
@@ -59,35 +22,45 @@
 		</h:commandButton>
 	</h:form>
 
-
+	<div style='width: 100%' class="textCenter">
+		<p:graphicImage
+			value="http://fonofest.com/wp-content/uploads/2015/03/steroid-online.jpg" />
+	</div>
 	<h:form>
 		<p:panel header="Solicita tus medicamentos online"
 			styleClass="textCenter">
-			<div class='searchTool'>
-				<h:panelGrid columns="5" cellpadding="5" styleClass="textCenter">
 
-					<h:outputLabel for="address" value="Tu direccion" />
+			<div class="ui-grid ui-grid-responsive">
+				<div class="ui-grid-row">
+					<div class="ui-grid-col-4">
+						<h:outputLabel for="address" value="Tu direccion " />
 
-					<p:inputText value="#{mainBean.address}" id="address"
-						required="true" label="address"
-						validatorMessage="Check your address"
-						placeholder="Ej: 18 de Julio 1266"
-						requiredMessage="Ingresa tu direccion">
+						<p:inputText value="#{mainBean.address}" id="address"
+							required="true" label="address"
+							validatorMessage="Comprueba tu direccion"
+							placeholder="Ej: 18 de Julio 1266"
+							requiredMessage="Ingresa tu direccion">
 
-					</p:inputText>
+						</p:inputText>
+					</div>
+					<div class="ui-grid-col-4">
+						<h:outputLabel for="data" value="Farmacia o farmaco " />
 
-					<h:outputLabel for="data" value="Farmacia o farmaco" />
+						<p:inputText value="#{mainBean.data}" id="data" label="data"
+							placeholder="Opcional">
 
-					<p:inputText value="#{mainBean.data}" id="data" label="data"
-						placeholder="Opcional">
-
-					</p:inputText>
-
-					<p:commandButton id="loginButton" value="Buscar"
-						actionListener="#{mainBean.search}" icon="ui-icon-search"
-						oncomplete="executeSearch()" />
-				</h:panelGrid>
+						</p:inputText>
+					</div>
+					<div class="ui-grid-col-4">
+						<p:commandButton id="searchButton" value="Buscar"
+							actionListener="#{mainBean.search}" icon="ui-icon-search"
+							oncomplete="executeSearch(xhr, status, args)" />
+					</div>
+				</div>
 			</div>
+
+
+
 
 		</p:panel>
 		<p:messages id="messages" showDetail="true" autoUpdate="true"

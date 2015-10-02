@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<body>
+	<ui:composition>
+
+		<div class="ui-grid ui-grid-responsive" style=''>
+			<div class="ui-grid-row">
+				<div class="ui-grid-col-2">
+					<h:graphicImage library="img" name="pYLogo.png" height="60"
+						width="150" />
+				</div>
+				<div class="ui-grid-col-6"></div>
+				<div class="ui-grid-col-4">
+
+
+					<h:form rendered="#{!loginBean.logued}">
+
+						<div class="ui-grid ui-grid-responsive">
+							<div class="ui-grid-row">
+								<div class="ui-grid-col-6">
+									<p:commandButton action="login" value="Ingresar"
+										styleClass="userButton" />
+								</div>
+								<div class="ui-grid-col-6">
+									<p:commandButton action="register" value="Registrarse"
+										styleClass="userButton" />
+								</div>
+							</div>
+						</div>
+
+					</h:form>
+
+					<h:form rendered="#{loginBean.logued}">
+						<p:commandButton value="Salir" action="#{loginBean.logout()}"
+							styleClass="userButton" />
+					</h:form>
+
+
+				</div>
+
+			</div>
+		</div>
+
+
+	</ui:composition>
+</body>
+</html>

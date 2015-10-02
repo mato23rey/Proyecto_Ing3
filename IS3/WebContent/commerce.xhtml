@@ -1,75 +1,131 @@
 <html xmlns="http://www.w3c.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<title>Farmacia Ya</title>
 </h:head>
-<h:body onload="getLocation()">
+<h:body>
 
 	<h:outputStylesheet library="css" name="index.css" />
 
-	<div style='width: 100%;'>
-		<p:panelGrid columns="3" layout="grid">
-			<h:graphicImage library="img" name="pYLogo.png" height="60"
-				width="150" />
-
-			<h:outputText value="" />
-
-			<p:panelGrid columns="2" layout="grid"
-				columnClasses="no-border, no-border" styleClass="textCenter"
-				rendered="#{!loginBean.logued}">
-				<h:form>
-					<h:commandButton action="login" value="Ingresar"
-						styleClass="userButton" />
-				</h:form>
-
-				<h:form>
-					<h:commandButton action="register" value="Registrarse"
-						styleClass="userButton" />
-				</h:form>
-			</p:panelGrid>
-
-
-			<p:panelGrid columns="2" layout="grid"
-				columnClasses="no-border, no-border" styleClass="textCenter"
-				rendered="#{loginBean.logued}">
-				<h:form>
-					<h:commandButton value="Cerrar sesion"
-						action="#{loginBean.logout()}" />
-				</h:form>
-
-			</p:panelGrid>
-
-		</p:panelGrid>
-	</div>
+	<ui:insert name="header">
+		<ui:include src="header.xhtml" />
+	</ui:insert>
 
 	<h:form>
-		<p:dataScroller value="#{commerceBean.result}" var="result"
-			chunkSize="10" rendered="#{searchBean.withResult}">
-			<f:facet name="header">
-           Productos
-        </f:facet>
-			<h:panelGrid columns="3" columnClasses="logo,detail">
-				<p:graphicImage
-					value="http://mlu-s1-p.mlstatic.com/perifar-400-espasmo-flex-15849-MLU20110476806_062014-O.jpg"
-					height="128" width="128" />
 
-				<p:outputPanel>
-					<h:panelGrid columns="2" cellpadding="2">
-						<h:outputText value="Nombre:" />
-						<h:outputText value="#{result.name}" style="font-weight: bold" />
+		<div class="ui-grid ui-grid-responsive">
+			<div class="ui-grid-row">
+				<div class="ui-grid-col-8">
+					<p:dataScroller value="#{commerceBean.result}" var="result"
+						chunkSize="10" rendered="#{searchBean.withResult}">
+						<f:facet name="header">
+           			Productos
+       			</f:facet>
+						<p:panel>
+							<div class="ui-grid ui-grid-responsive">
+								<div class="ui-grid-row">
+									<div class="ui-grid-col-3">
+										<p:graphicImage
+											value="http://mlu-s1-p.mlstatic.com/perifar-400-espasmo-flex-15849-MLU20110476806_062014-O.jpg"
+											height="128" width="128" />
+									</div>
 
-						<h:outputText value="Precio:" />
-						<h:outputText value="$ #{result.price}" style="font-weight: bold" />
+									<div class="ui-grid-col-6">
+										<p:outputPanel>
+											<h:panelGrid columns="2" cellpadding="2">
+												<h:outputText value="Nombre:" />
+												<h:outputText value="#{result.name}"
+													style="font-weight: bold" />
 
-						<h:outputText value="Descripcion:" />
-						<h:outputText value="#{result.desc}" style="font-weight: bold" />
-					</h:panelGrid>
-				</p:outputPanel>
+												<h:outputText value="Precio:" />
+												<h:outputText value="$#{result.price}"
+													style="font-weight: bold" />
 
-			</h:panelGrid>
-		</p:dataScroller>
+												<h:outputText value="Descripcion:" />
+												<h:outputText value="#{result.desc}"
+													style="font-weight: bold" />
+											</h:panelGrid>
+										</p:outputPanel>
+									</div>
+
+									<div class="ui-grid-col-3 textCenter">
+										<p:commandButton actionListener="#{searchBean.selectCommerce}"
+											value="Adquirir" icon="ui-icon-plusthick"
+											oncomplete="displayCommerce(xhr, status, args)">
+										</p:commandButton>
+									</div>
+								</div>
+							</div>
+
+						</p:panel>
+					</p:dataScroller>
+				</div>
+
+				<div class="ui-grid-col-4">
+					<p:dataScroller value="#{commerceBean.result}" var="result"
+						chunkSize="10" rendered="#{searchBean.withResult}">
+						<f:facet name="header">
+           			Mi pedido
+       			</f:facet>
+						<p:panel>
+							<div class="ui-grid ui-grid-responsive">
+								<div class="ui-grid-row">
+									<div class="ui-grid-col-6">
+										<p:outputPanel>
+											<h:panelGrid columns="2" cellpadding="2">
+												<h:outputText value="Nombre:" />
+												<h:outputText value="#{result.name}"
+													style="font-weight: bold" />
+
+												<h:outputText value="Precio:" />
+												<h:outputText value="$#{result.price}"
+													style="font-weight: bold" />
+
+												<h:outputText value="Cantidad" />
+												<h:outputText value="$#{5}" style="font-weight: bold" />
+
+												<h:outputText value="Total" />
+												<h:outputText value="$#{50}" style="font-weight: bold" />
+											</h:panelGrid>
+										</p:outputPanel>
+									</div>
+
+									<div class="ui-grid-col-6 textCenter">
+										<p:commandButton actionListener="#{searchBean.selectCommerce}"
+											value="Eliminar" icon="ui-icon-closethick"
+											oncomplete="displayCommerce(xhr, status, args)">
+										</p:commandButton>
+									</div>
+								</div>
+							</div>
+
+						</p:panel>
+
+					</p:dataScroller>
+					<p:panel styleClass="textCenter">
+						<h:outputText value="Total: " />
+						<h:outputText value="$#{50}" style="font-weight: bold" />
+						<f:facet name="footer">
+							<div class="ui-grid ui-grid-responsive textCenter">
+								<div class="ui-grid-row">
+									<div class="ui-grid-col-6">
+										<p:button value='Pedir' icon="ui-icon-circle-check"></p:button>
+									</div>
+									<div class="ui-grid-col-6">
+										<p:button value='Cancelar' icon="ui-icon-circle-close"></p:button>
+									</div>
+								</div>
+							</div>
+
+						</f:facet>
+					</p:panel>
+
+				</div>
+			</div>
+		</div>
 
 		<p:messages id="messages" showDetail="true" autoUpdate="true"
 			closable="true" rendered="#{!searchBean.withResult}" />
