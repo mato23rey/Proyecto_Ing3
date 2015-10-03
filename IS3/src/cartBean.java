@@ -7,6 +7,8 @@ import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.primefaces.context.RequestContext;
+
 import cart.CartItem;
 import cart.OrderEmitter;
 import hibernate.Product;
@@ -66,6 +68,7 @@ public class cartBean {
 	public void requestOrder(ActionEvent event){
 		System.out.println("ASKING");
 		FacesMessage msg  = new FacesMessage(FacesMessage.SEVERITY_INFO, "Exito", "Pedido realizado");
+		boolean requested = false;
 
 		boolean isLogued = (boolean) event.getComponent().getAttributes().get("logued");
 		if(isLogued){
@@ -78,8 +81,11 @@ public class cartBean {
 				String address = session.getAttribute("search_address").toString();
 				int user_id = Integer.parseInt(httpServletRequest.getSession().getAttribute("user_session").toString());
 
-				OrderEmitter.emitOrder(address, user_id, cart);
-				cart = new ArrayList<CartItem>();
+				if(OrderEmitter.emitOrder(address, user_id, cart)){
+					cart = new ArrayList<CartItem>();
+					requested = true;
+				}
+
 			}else{
 				msg  = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Carrito vacio");
 			}
@@ -88,6 +94,9 @@ public class cartBean {
 			msg  = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Debes loguearte primero");
 		}
 		FacesContext.getCurrentInstance().addMessage("orderMessages", msg);
+		RequestContext context = RequestContext.getCurrentInstance();
+		context.addCallbackParam("requested", requested);
+
 
 	}
 

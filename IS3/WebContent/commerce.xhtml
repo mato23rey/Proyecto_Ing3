@@ -95,16 +95,18 @@
 								<p:dialog header="Seleccionar cantidad"
 									widgetVar="#{result.name}Dialog" resizable="false"
 									id='#{result.name}Dialog'>
-									<h:form>
+									<h:form styleClass="textCenter">
 										<p:growl id="growl" sticky="true" showDetail="true" life="100" />
 										<h:outputLabel for="cant" value="Cantidad:" />
 										<p:inputText id="cant" required="true"
 											requiredMessage="Debes ingresar la cantidad!" type="number"
-											validatorMessage="Cantidad invalida" value="#{cartBean.cant}">
+											validatorMessage="Cantidad invalida" value="#{cartBean.cant}"
+											autofocus="true" onfocus="this.value = this.value;">
 											<f:validateLongRange minimum="1" maximum="100" />
 										</p:inputText>
 
-										<h:message for="cant" style="color:red" />
+										<br></br>
+										<br></br>
 
 										<p:commandButton actionListener="#{cartBean.addItem}"
 											value="Confirmar" styleClass="ui-priority-primary"
@@ -175,7 +177,7 @@
 								<div class="ui-grid-col-6">
 									<p:commandButton value='Pedir' icon="ui-icon-circle-check"
 										actionListener="#{cartBean.requestOrder}"
-										oncomplete="onRequest(xhr, status, args)">
+										oncomplete="onRequested(xhr, status, args)">
 										<f:attribute name="logued" value="#{loginBean.logued}" />
 									</p:commandButton>
 								</div>
