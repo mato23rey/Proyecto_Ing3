@@ -16,18 +16,18 @@
 		<ui:include src="header.xhtml" />
 	</ui:insert>
 
-	<div style='width: 100%; text-align: center;'>
-		<h:form>
+	<h:form id="searchForm">
+		<p:panel styleClass="textCenter">
+			<ui:insert name="searchTool">
+				<ui:include src="searchTool.xhtml" />
+			</ui:insert>
+		</p:panel>
+		<p:messages id="messages" showDetail="true" autoUpdate="true"
+			closable="true" />
+	</h:form>
 
-			<h:outputLabel for="data" value="Farmacia o farmaco " style="font-weight: bold;font-size:2vw"/>
-			<p:inputText value="#{searchBean.data}" id="data" label="data"
-				placeholder="Buscar...">
-			</p:inputText>
-			<p:commandButton id="searchButton" value="Buscar"
-				icon="ui-icon-search" oncomplete="executeSearch(xhr, status, args)" />
-		</h:form>
-	</div>
-<br></br>
+
+	<br></br>
 	<h:form>
 		<p:dataScroller value="#{searchBean.result}" var="result"
 			chunkSize="10" rendered="#{searchBean.withResult}">

@@ -1,13 +1,23 @@
 package search;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class SearchResult {
+public class SearchResult implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
 	String pharmacyName,sucursalName,address;
 	int score = 0;
 	int id;
-	
-	
+
+	double distance;
+
+
 	public int getId() {
 		return id;
 	}
@@ -52,5 +62,13 @@ public class SearchResult {
 		Random r = new Random();
 		score = r.nextInt(5);
 	}
-	
+
+	public double getDistance() {
+		return distance;
+	}
+
+	public void setDistance(double distance) {
+		this.distance = distance;
+	}
+
 }

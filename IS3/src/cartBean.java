@@ -12,6 +12,8 @@ public class cartBean {
 	List<CartItem> cart;
 	float total;
 
+	String address,coors;
+	
 	public List<CartItem> getCart() {
 		return cart;
 	}

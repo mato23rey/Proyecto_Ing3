@@ -29,8 +29,8 @@ function find(address){
 }
 
 function updatePosition(pos){
-	document.getElementById("cordsForm:cords").value = pos;
-	document.getElementById("cordsForm:cordsButton").click();
+	document.getElementById("searchForm:cordsForm:cords").value = pos;
+	document.getElementById("searchForm:cordsForm:cordsButton").click();
 }
 
 function executeSearch(xhr, status, args) {
