@@ -1,5 +1,4 @@
 import java.io.Serializable;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +18,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.primefaces.context.RequestContext;
 
+import haversine.Haversine;
 import hibernate.Pharmacy;
 import hibernate.Sucursal;
 import search.SearchResult;
@@ -143,7 +143,6 @@ public class searchBean implements Serializable{
 				httpServletRequest.getSession().setAttribute("cords", cords);
 
 				search(data);
-				//TODO Order by distance
 
 				httpServletRequest.getSession().setAttribute("search_result", result);
 				httpServletRequest.getSession().setAttribute("search_done", true);
@@ -238,7 +237,8 @@ public class searchBean implements Serializable{
 				quad*=-1;
 			}
 
-			double distance = Math.sqrt(quad);
+			//double distance = Math.sqrt(quad);
+			double distance = Haversine.calculateDistance(myX, myY, comX, comY);
 
 			sR.setDistance(distance);
 
