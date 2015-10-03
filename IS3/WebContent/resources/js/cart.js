@@ -5,3 +5,10 @@ function onRequest(xhr, status, args) {
 		}, 1000);
 	}
 }
+
+function onNewItem(xhr, status, args){
+	if (!args.validationFailed){
+		location.reload();
+	}
+
+}

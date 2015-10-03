@@ -111,12 +111,12 @@ public class searchBean implements Serializable{
 
 		if(session.getAttribute("search_done") !=null){
 
-			data = httpServletRequest.getSession().getAttribute("search_data").toString();
-			if(httpServletRequest.getSession().getAttribute("cords") != null){
-				cords = httpServletRequest.getSession().getAttribute("cords").toString();
+			data = session.getAttribute("search_data").toString();
+			if(session.getAttribute("cords") != null){
+				cords = session.getAttribute("cords").toString();
 			}
-			address = httpServletRequest.getSession().getAttribute("search_address").toString();
-			result = (List<SearchResult>)httpServletRequest.getSession().getAttribute("search_result");
+			address = session.getAttribute("search_address").toString();
+			result = (List<SearchResult>)session.getAttribute("search_result");
 
 			orderByDistance();
 
@@ -196,7 +196,7 @@ public class searchBean implements Serializable{
 				+ " or pharmacy_id in (select id from Pharmacy where name like '%"+data+"%')"
 				+ " or id in (select sucursal_id from Product_Sucursal where product_id in "
 				+ " (select id from Product where name like '%"+data+"%'))");
-		
+
 		for(Object o : querySuc.list()){
 			Sucursal s = (Sucursal)o;
 			SearchResult sR = new SearchResult();
@@ -266,11 +266,15 @@ public class searchBean implements Serializable{
 
 	public void selectCommerce(ActionEvent event){
 
-		comId = Integer.parseInt(event.getComponent().getAttributes().get("comId").toString());
+		SearchResult com = (SearchResult)(event.getComponent().getAttributes().get("com"));
+		comId = com.getId();
 
 		RequestContext context = RequestContext.getCurrentInstance();
 		context.addCallbackParam("target", "commerce.xhtml?comId="+comId);
 
+		FacesContext  faceContext=FacesContext.getCurrentInstance();
+		HttpServletRequest httpServletRequest = (HttpServletRequest)faceContext.getExternalContext().getRequest();
+		httpServletRequest.getSession().setAttribute("commerce", com);
 	}
 
 }

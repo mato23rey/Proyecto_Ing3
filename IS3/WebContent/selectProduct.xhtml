@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:body>
+
+	<h:form id="newProduct">
+		<p:growl id="growl" sticky="true" showDetail="true" life="100" />
+		<h:outputLabel for="cant" value="Cantidad:" />
+		<p:inputText id="cant" required="true"
+			requiredMessage="Debes ingresar la cantidad!" type="number"
+			validatorMessage="Cantidad inválida" value="#{cartBean.cant}">
+			<f:validateLongRange minimum="1" maximum="100" />
+		</p:inputText>
+
+		<h:message for="cant" style="color:red" />
+
+		<p:commandButton actionListener="#{cartBean.addItem}"
+			value="Confirmar" icon="ui-icon-plusthick"
+			styleClass="ui-priority-primary"
+			oncomplete="onNewItem(xhr, status, args)" update="growl">
+
+			<f:attribute name="item" value="#{result}" />
+		</p:commandButton>
+	</h:form>
+</h:body>
+
+</html>

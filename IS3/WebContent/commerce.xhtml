@@ -16,7 +16,35 @@
 		<ui:include src="header.xhtml" />
 	</ui:insert>
 
+	<p:panel>
+		<div class="ui-grid ui-grid-responsive">
+			<div class="ui-grid-row">
+				<div class="ui-grid-col-2">
+					<p:graphicImage
+						value="http://www.brandsoftheworld.com/sites/default/files/styles/logo-thumbnail/public/112011/logo_farmashop_vertical_diapo.png"
+						height="128" width="128" />
+				</div>
+				<div class="ui-grid-col-4">
+					<p:outputPanel>
+						<h:panelGrid columns="2" cellpadding="2">
+							<h:outputText value="Nombre:" />
+							<h:outputText
+								value="#{commerceBean.sucursal.pharmacyName} #{commercceBean.sucursal.sucursalName}"
+								style="font-weight: bold" />
 
+							<h:outputText value="Direccion:" />
+							<h:outputText value="#{commerceBean.sucursal.address}"
+								style="font-weight: bold" />
+
+							<h:outputText value="Calificacion:" />
+							<p:rating value="#{commerceBean.sucursal.score}" readonly="true" />
+						</h:panelGrid>
+					</p:outputPanel>
+				</div>
+
+			</div>
+		</div>
+	</p:panel>
 
 	<div class="ui-grid ui-grid-responsive">
 		<div class="ui-grid-row">
@@ -53,23 +81,31 @@
 									</p:outputPanel>
 								</div>
 
-								<h:form>
-									<div class="ui-grid-col-3 textCenter">
-										<p:commandButton actionListener="#{cartBean.addItem}"
-											value="Adquirir" icon="ui-icon-plusthick"
-											styleClass="ui-priority-primary"
-											oncomplete="location.reload()">
 
-											<f:attribute name="item" value="#{result}" />
-										</p:commandButton>
-									</div>
-								</h:form>
+								<div class="ui-grid-col-3 textCenter">
+									<p:commandButton value="Adquirir" icon="ui-icon-plusthick"
+										styleClass="ui-priority-primary" onclick="PF('dlg').show();">
+
+										<f:attribute name="item" value="#{result}" />
+									</p:commandButton>
+								</div>
+
+
+								<p:dialog header="Seleccionar cantidad" widgetVar="dlg"
+									resizable="false">
+									<ui:insert name="selectProduct">
+										<ui:include src="selectProduct.xhtml" />
+									</ui:insert>
+								</p:dialog>
+
+
 							</div>
 						</div>
 
 					</p:panel>
 				</p:dataScroller>
 			</div>
+
 
 			<div class="ui-grid-col-4">
 				<p:dataScroller value="#{cartBean.cart}" var="cart" chunkSize="10">

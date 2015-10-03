@@ -4,12 +4,16 @@ import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import hibernate.Product;
 import hibernate.Product_Sucursal;
+import search.SearchResult;
 
 public class commerceBean implements Serializable{
 
@@ -18,10 +22,11 @@ public class commerceBean implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	
+
+
 	List<Product> result;
 	int comId;
+	SearchResult sucursal;
 
 	public int getComId() {
 		return comId;
@@ -46,8 +51,19 @@ public class commerceBean implements Serializable{
 	}
 
 	public commerceBean(){
-
+		FacesContext faceContext = FacesContext.getCurrentInstance();
+		HttpServletRequest httpServletRequest = (HttpServletRequest)faceContext.getExternalContext().getRequest();
+		HttpSession session = httpServletRequest.getSession();
+		if(session.getAttribute("commerce") != null){
+			sucursal = (SearchResult) httpServletRequest.getSession().getAttribute("commerce");
+		}
 	}
+
+
+	public SearchResult getSucursal() {
+		return sucursal;
+	}
+
 
 	private void loadProducts(int comId){
 		result = new ArrayList<Product>();
@@ -76,7 +92,5 @@ public class commerceBean implements Serializable{
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "La busqueda no ha devuelto resultados",""));
 		}
 	}
-
-
 
 }
