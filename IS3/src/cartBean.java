@@ -13,7 +13,7 @@ import hibernate.Product;
 
 public class cartBean {
 	List<CartItem> cart;
-	int cant;
+	int cant = 1;
 	float total;
 
 	public int getCant() {
@@ -21,6 +21,7 @@ public class cartBean {
 	}
 
 	public void setCant(int cant) {
+		System.out.println("new cant");
 		this.cant = cant;
 	}
 
@@ -37,20 +38,22 @@ public class cartBean {
 		cart = new ArrayList<CartItem>();
 	}
 
-	public void buttonAction(ActionEvent actionEvent) {
-		System.out.println("ADD ITEM!!");
-
-	}
-
 	public void addItem(ActionEvent event){
 		Product p = (Product)event.getComponent().getAttributes().get("item");
 
-		CartItem cI = new CartItem();
-		cI.setProduct(p);
-		cI.setCant(cant);
-		cart.add(cI);
+		CartItem check = checkItem(p);
+		if(check != null){
+			int newCant = check.getCant()+cant;
+			check.setCant(newCant);
+		}else{
+
+			CartItem cI = new CartItem();
+			cI.setProduct(p);
+			cI.setCant(cant);
+			cart.add(cI);
+		}
 		calculateTotal();
-		cant = 0;
+		cant = 1;
 	}
 
 	public void removeItem(ActionEvent event){
@@ -106,6 +109,13 @@ public class cartBean {
 		this.total = total;
 	}
 
-
+	private CartItem checkItem(Product p){
+		for(CartItem cI : cart){
+			if(cI.getProduct().getId() == p.getId()){
+				return cI;
+			}
+		}
+		return null;
+	}
 
 }

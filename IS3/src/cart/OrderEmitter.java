@@ -40,8 +40,10 @@ public class OrderEmitter {
 
 		tx.commit();
 
+		session.close();
 
 		for(CartItem cI : products){
+			session = factory.openSession();
 			Sale_Product sP = new Sale_Product();
 			sP.setProduct_id(cI.getProduct().getId());
 			sP.setSale_id(saleId);
@@ -51,10 +53,11 @@ public class OrderEmitter {
 			session.save(sP);
 			System.out.println("Product saved successfully.....!!");
 			tx.commit();
-
+			session.close();
 		}
-
-		session.close();
+		if(session.isOpen()){
+			session.close();
+		}
 		factory.close();
 
 		return true;
