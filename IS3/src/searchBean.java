@@ -175,7 +175,6 @@ public class searchBean implements Serializable{
 			coords = lat+","+lon;
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return coords;
@@ -193,7 +192,7 @@ public class searchBean implements Serializable{
 		Session session = sessionFactory.getCurrentSession();
 		session.beginTransaction();
 
-		Query querySuc = session.createQuery("from Sucursal where name like '%"+data+"%'");
+		Query querySuc = session.createQuery("from Sucursal where name like '%"+data+"%' or pharmacy_id in (from Pharmacy where name like '%"+data+"%')");
 		for(Object o : querySuc.list()){
 			Sucursal s = (Sucursal)o;
 			SearchResult sR = new SearchResult();
@@ -232,12 +231,12 @@ public class searchBean implements Serializable{
 			comX = Double.parseDouble(resultPos.split(",")[0]);
 			comY = Double.parseDouble(resultPos.split(",")[1]);
 
-			double quad = (comX-myX)+(comY-myY);
+			/*double quad = (comX-myX)+(comY-myY);
 			if(quad<0){
 				quad*=-1;
 			}
 
-			//double distance = Math.sqrt(quad);
+			//double distance = Math.sqrt(quad);*/
 			double distance = Haversine.calculateDistance(myX, myY, comX, comY);
 
 			sR.setDistance(distance);
