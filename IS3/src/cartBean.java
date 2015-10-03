@@ -4,19 +4,17 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-
-import org.primefaces.context.RequestContext;
-import org.primefaces.event.SelectEvent;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import cart.CartItem;
+import cart.OrderEmitter;
 import hibernate.Product;
 
 public class cartBean {
 	List<CartItem> cart;
 	int cant;
 	float total;
-
-	String address,coors;
 
 	public int getCant() {
 		return cant;
@@ -62,18 +60,6 @@ public class cartBean {
 		calculateTotal();
 	}
 
-	public void chooseProduct() {
-		System.out.println("Choose");
-		RequestContext.getCurrentInstance().openDialog("selectProduct");
-	}
-
-	public void onProductSelected(SelectEvent event) {
-		//Car car = (Car) event.getObject();
-		//FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Car Selected", "Id:" + car.getId());
-
-		//FacesContext.getCurrentInstance().addMessage(null, message);
-	}
-
 	public void requestOrder(ActionEvent event){
 		System.out.println("ASKING");
 		FacesMessage msg  = new FacesMessage(FacesMessage.SEVERITY_INFO, "Exito", "Pedido realizado");
@@ -81,8 +67,16 @@ public class cartBean {
 		boolean isLogued = (boolean) event.getComponent().getAttributes().get("logued");
 		if(isLogued){
 			if(cart.size() != 0){
-				clearCart();
-				System.out.println("Pedido realizado");
+
+				FacesContext faceContext=  FacesContext.getCurrentInstance();
+				HttpServletRequest httpServletRequest = (HttpServletRequest)faceContext.getExternalContext().getRequest();
+				HttpSession session = httpServletRequest.getSession();
+
+				String address = session.getAttribute("search_address").toString();
+				int user_id = Integer.parseInt(httpServletRequest.getSession().getAttribute("user_session").toString());
+
+				OrderEmitter.emitOrder(address, user_id, cart);
+				cart = new ArrayList<CartItem>();
 			}else{
 				msg  = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Carrito vacio");
 			}

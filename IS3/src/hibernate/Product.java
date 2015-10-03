@@ -1,6 +1,13 @@
 package hibernate;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	int id,pharmacy_id;
 	String name,desc;
 	float price;

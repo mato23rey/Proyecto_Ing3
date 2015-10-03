@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping">
+<hibernate-mapping>
+	<class name="hibernate.Sale" table="SALE">
+		<id column="ID" name="id" type="integer" >
+			<generator class="increment"/>
+		</id>
+		<property column="DATE" name="date" type="date" />
+		<property column="USER_ID" name="user_id" type="integer" />
+		<property column="ADDRESS" name="address" type="string" />
+		<property column="COMMENT" name="comment" type="string" />
+		<property column="SCORE" name="score" type="integer" />
+
+	</class>
+</hibernate-mapping>
