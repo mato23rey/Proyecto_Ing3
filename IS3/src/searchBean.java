@@ -192,7 +192,11 @@ public class searchBean implements Serializable{
 		Session session = sessionFactory.getCurrentSession();
 		session.beginTransaction();
 
-		Query querySuc = session.createQuery("from Sucursal where name like '%"+data+"%' or pharmacy_id in (from Pharmacy where name like '%"+data+"%')");
+		Query querySuc = session.createQuery("from Sucursal where name like '%"+data+"%'"
+				+ " or pharmacy_id in (select id from Pharmacy where name like '%"+data+"%')"
+				+ " or id in (select sucursal_id from Product_Sucursal where product_id in "
+				+ " (select id from Product where name like '%"+data+"%'))");
+		
 		for(Object o : querySuc.list()){
 			Sucursal s = (Sucursal)o;
 			SearchResult sR = new SearchResult();
