@@ -19,7 +19,7 @@
 		<ui:include src="header.xhtml" />
 	</ui:insert>
 
-	<h:form>
+	<h:form id="saleForm">
 
 		<div class="ui-grid ui-grid-responsive" style='text-align: center'>
 			<div class="ui-grid-row">
@@ -54,8 +54,25 @@
 
 			<br></br> <br></br> <br></br>
 			<p:commandButton id="validateButton" value="Enviar"
-				actionListener="#{saleBean.complete}" icon="ui-icon-check"
-				oncomplete="onSaleComplete(xhr, status, args)" />
+				onclick="PF('saleDialog').show();" icon="ui-icon-check" />
+
+			<p:dialog header="Enviar" widgetVar="saleDialog" resizable="false"
+				id='confirmDialog' closable="true" closeOnEscape="true">
+
+				<h3>Enviar?</h3>
+
+				<br></br>
+				<br></br>
+
+				<p:commandButton id="sendButton" value="SI"
+					actionListener="#{saleBean.complete}" icon="ui-icon-check"
+					oncomplete="PF('saleDialog').hide();onSaleComplete(xhr, status, args)" />
+
+				<p:commandButton id="cancelButton" value="NO"
+					icon="ui-icon-closethick" oncomplete="PF('saleDialog').hide();" />
+
+			</p:dialog>
+
 		</div>
 
 		<p:messages id="messages" showDetail="true" autoUpdate="true"
