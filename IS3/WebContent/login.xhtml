@@ -3,7 +3,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>Ingresar</title>
+	<title>Ingresár</title>
 </h:head>
 
 <h:body style='background:none'>
@@ -13,43 +13,55 @@
 	<h:outputScript library="js" name="login.js" />
 	<h:outputScript library="js" name="index.js" />
 
-	<p:panelGrid columns="3" layout="grid">
-
-		<h:outputLabel value="" />
-
-		<h:form styleClass="textCenter" style='border: solid 2px black'>
-			<p:panel header="Login">
-
-				<h:panelGrid columns="2" cellpadding="5" styleClass="textCenter">
-					<h:outputLabel for="email" value="Email" />
-					<p:inputText value="#{loginBean.email}" id="email" required="true"
-						label="email" requiredMessage="Ingresa tu email"
-						validatorMessage="Mail invalido">
-
-						<f:validateRegex
-							pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-					</p:inputText>
-
-					<h:outputLabel for="password" value="Clave:" />
-					<p:password value="#{loginBean.pass}" id="password" required="true"
-						label="password" />
-
-					<f:facet name="footer">
-						<div class='textCenter'>
-							<p:commandButton id="loginButton" value="Ingresar"
-								actionListener="#{loginBean.login}"
-								oncomplete="onLogin(xhr, status, args)" />
+	<div class="container textCenter">
+		<h2>Ingresar</h2>
+		<h:form>
+			<div class="form-group">
+				<div class="ui-grid ui-grid-responsive">
+					<div class="ui-grid-row">
+						<div class="ui-grid-col-4"></div>
+						<div class="ui-grid-col-1">
+							<b style='font-size: 1.8vw'>Email </b>
 						</div>
-					</f:facet>
-				</h:panelGrid>
-			</p:panel>
+						<div class="ui-grid-col-2">
+							<p:inputText value="#{loginBean.email}" id="email"
+								required="true" label="email" requiredMessage="Ingresá tu email"
+								validatorMessage="Mail inválido" styleClass="form-control">
+								<f:validateRegex
+									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+							</p:inputText>
+
+						</div>
+					</div>
+					<br></br>
+					<div class="ui-grid-row">
+						<div class="ui-grid-col-4"></div>
+						<div class="ui-grid-col-1">
+							<b style='font-size: 1.8vw'>Password </b>
+						</div>
+						<div class="ui-grid-col-2">
+							<p:password value="#{loginBean.pass}" id="password"
+								required="true" label="password" styleClass="form-control"
+								requiredMessage="Ingresá tu password" />
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<br></br>
+			<p:commandButton id="loginButton" value="Ingresar"
+				actionListener="#{loginBean.login}"
+				oncomplete="onLogin(xhr, status, args)" />
+
 			<p:messages id="messages" showDetail="true" autoUpdate="true"
 				closable="true" />
+
 		</h:form>
+	</div>
 
-		<h:outputLabel value="" />
+	<h:outputLabel value="" />
 
-	</p:panelGrid>
 </h:body>
 
 </html>
