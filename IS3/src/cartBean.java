@@ -80,8 +80,9 @@ public class cartBean {
 
 				String address = session.getAttribute("search_address").toString();
 				int user_id = Integer.parseInt(httpServletRequest.getSession().getAttribute("user_session").toString());
+				String userEmail = httpServletRequest.getSession().getAttribute("user_email").toString();
 
-				if(OrderEmitter.emitOrder(address, user_id, cart)){
+				if(OrderEmitter.emitOrder(address, user_id, cart,total,userEmail)){
 					cart = new ArrayList<CartItem>();
 					requested = true;
 				}

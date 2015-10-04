@@ -117,6 +117,7 @@ public class loginBean {
 					HttpServletRequest httpServletRequest = (HttpServletRequest)faceContext.getExternalContext().getRequest();
 					userId = user.getId();
 					httpServletRequest.getSession().setAttribute("user_session", userId);
+					httpServletRequest.getSession().setAttribute("user_email", email);
 				}else{
 					msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Debes activar tu cuenta primero!");
 				}

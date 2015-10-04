@@ -1,0 +1,62 @@
+<html xmlns="http://www.w3c.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Farmacia Ya</title>
+</h:head>
+<h:body>
+	<h:outputScript library="js" name="sale.js" />
+
+	<f:metadata>
+		<f:viewParam name="sale" value="#{saleBean.sale}" />
+	</f:metadata>
+
+
+	<h:form>
+
+		<div class="ui-grid ui-grid-responsive" style='text-align: center'>
+			<div class="ui-grid-row">
+				<div class="ui-grid-col-5"></div>
+				<div class="ui-grid-col-2">
+					<h2>Comentario</h2>
+				</div>
+			</div>
+
+			<div class="ui-grid-row">
+				<div class="ui-grid-col-4"></div>
+				<div class="ui-grid-col-4">
+					<p:inputTextarea placeholder="Un comentario sobre el servicio"
+						rows="6" cols="33" value="#{saleBean.comment}" />
+				</div>
+			</div>
+
+			<div class="ui-grid-row">
+				<div class="ui-grid-col-5"></div>
+				<div class="ui-grid-col-2">
+					<h2>Puntaje</h2>
+				</div>
+			</div>
+
+			<div class="ui-grid-row">
+				<div class="ui-grid-col-4"></div>
+				<div class="ui-grid-col-4">
+					<p:rating value="#{saleBean.score}"
+						style=" width: 96px;margin: 0 auto;" />
+				</div>
+			</div>
+
+			<br></br> <br></br> <br></br>
+			<p:commandButton id="validateButton" value="Enviar"
+				actionListener="#{saleBean.complete}"
+				oncomplete="onSaleComplete(xhr, status, args)" />
+		</div>
+
+	</h:form>
+
+	<p:messages id="messages" showDetail="true" autoUpdate="true"
+		closable="true" />
+
+</h:body>
+
+</html>
