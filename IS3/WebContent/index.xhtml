@@ -5,22 +5,47 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Farmacia Ya</title>
-</h:head>
-<h:body onload="getLocation()">
+
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	</f:facet>
+
+	<f:facet name="middle">
+		<h:outputStylesheet name="bootstrap/css/bootstrap.css" />
+
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />
+
+		<h:outputScript name="bootstrap/js/bootstrap.js" />
+	</f:facet>
+
+	<f:facet name="last">
+
+	</f:facet>
 
 	<h:outputStylesheet library="css" name="index.css" />
 	<h:outputScript library="js" name="index.js" />
 
+</h:head>
+<h:body onload="getLocation()">
+
+
+
+
+
 	<div
-		style='background: url(http://pharmacy7rx.com/wp-content/uploads/2013/07/1-3_low.jpg); background-repeat: no-repeat; height: 50vh'>
+		style='background: url(http://pharmacy7rx.com/wp-content/uploads/2013/07/1-3_low.jpg); background-repeat: no-repeat; height: 50vh; background-size: cover'>
 		<ui:insert name="header">
 			<ui:include src="header.xhtml" />
 		</ui:insert>
 		<br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br>
 
 		<h:form>
-			<p:panel header="Solicita tus medicamentos online"
-				styleClass="textCenter">
+			<p:panel header="Solicitá tus medicamentos online"
+				styleClass="textCenter container">
 				<ui:insert name="searchTool">
 					<ui:include src="searchTool.xhtml" />
 				</ui:insert>
@@ -30,16 +55,17 @@
 		</h:form>
 	</div>
 	<br></br>
-	<div style='text-align: center'>
+	<div class="textCenter container">
 		<div class="ui-grid ui-grid-responsive ui-widget">
-			<b style='font-size: 1.8em'>Pedir farmacos nunca fue tan facil</b> <br></br>
-			<br></br> <br></br>
+			<h2>Pedir farmacos nunca fue tan fácil</h2>
+			<br></br> <br></br> <br></br>
 			<div class="ui-grid-row">
 				<div class="ui-grid-col-4">
 					<p:graphicImage
 						value="http://cdn1.ticbeat.com/wp-content/uploads/2015/01/usuario-online.jpg"
 						width="256"></p:graphicImage>
-					<br></br> Ingresa tu direccion y descubre cientos de farmacias
+					<br></br>
+					<p>Ingresá tu dirección y descubrí cientos de farmacias</p>
 				</div>
 
 
@@ -47,24 +73,20 @@
 					<p:graphicImage
 						value="http://cdn1.ticbeat.com/wp-content/uploads/2015/01/usuario-online.jpg"
 						width="256"></p:graphicImage>
-					<br></br> Elegi la droga que mas te guste y hace tu pedido online
+					<br></br>
+					<p>Elegí la droga que mas te guste y hace tu pedido online</p>
 				</div>
 
 				<div class="ui-grid-col-4">
 					<p:graphicImage
 						value="http://carlosfelice.com.ar/blog/wp-content/uploads/droga.jpg"
 						width="256"></p:graphicImage>
-					<br></br> La farmacia confirma y entrega el pedido en tu puerta
+					<br></br>
+					<p>La farmacia confirma y entrega el pedido en tu puerta</p>
 				</div>
-
 			</div>
-
 		</div>
-
-
 	</div>
-
-
 
 </h:body>
 
