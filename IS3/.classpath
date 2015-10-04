@@ -12,7 +12,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
-	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JSF 2.2 (Mojarra 2.2.0)">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
@@ -34,5 +33,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.0.8-bin.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/primefaces-5.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/json.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
