@@ -1,22 +1,31 @@
 .no-border {
-    border: 0px; 
-}
-    
-.textCenter{
-	text-align:center;
-}  
-
-.searchTool{
-	position:relative;
-	left:10%;
-	width:80%;
-}  
-
-.userButton{
-	width:80%;
-	font-size: 18px;
+	border: 0px;
 }
 
-.cartButton{
+.textCenter {
+	text-align: center;
+}
+
+.searchTool {
+	position: relative;
+	left: 10%;
+	width: 80%;
+}
+
+.loginLink {
+	font-weight:bold;
+	color: blue;
+	font-size:1.45vw;
+	text-decoration: none;
+}
+.logoutLink{
+	font-weight:bold;
+	color: blue;
+	font-size:2vw;
+	text-decoration: none;
+}
+
+
+.cartButton {
 	
 }

@@ -11,24 +11,59 @@
 	<h:outputStylesheet library="css" name="index.css" />
 	<h:outputScript library="js" name="index.js" />
 
-	<ui:insert name="header">
-		<ui:include src="header.xhtml" />
-	</ui:insert>
+	<div
+		style='background: url(http://pharmacy7rx.com/wp-content/uploads/2013/07/1-3_low.jpg); background-repeat: no-repeat; height: 50vh'>
+		<ui:insert name="header">
+			<ui:include src="header.xhtml" />
+		</ui:insert>
+		<br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br>
 
-	<div style='width: 100%' class="textCenter">
-		<p:graphicImage
-			value="http://www.pharmacycomputers.com.au/wp-content/uploads/2013/01/Laptop-copy.jpg" />
+		<h:form>
+			<p:panel header="Solicita tus medicamentos online"
+				styleClass="textCenter">
+				<ui:insert name="searchTool">
+					<ui:include src="searchTool.xhtml" />
+				</ui:insert>
+			</p:panel>
+			<p:messages id="messages" showDetail="true" autoUpdate="true"
+				closable="true" />
+		</h:form>
 	</div>
-	<h:form>
-		<p:panel header="Solicita tus medicamentos online"
-			styleClass="textCenter">
-			<ui:insert name="searchTool">
-				<ui:include src="searchTool.xhtml" />
-			</ui:insert>
-		</p:panel>
-		<p:messages id="messages" showDetail="true" autoUpdate="true"
-			closable="true" />
-	</h:form>
+
+	<div style='text-align: center'>
+		<div class="ui-grid ui-grid-responsive">
+			<h2>Pedir farmacos nunca fue tan facil</h2>
+			<div class="ui-grid-row">
+				<div class="ui-grid-col-4">
+					<p:graphicImage
+						value="http://cdn1.ticbeat.com/wp-content/uploads/2015/01/usuario-online.jpg"
+						width="256"></p:graphicImage>
+					<br></br> Ingresa tu direccion y descubre cientos de farmacias
+				</div>
+
+
+				<div class="ui-grid-col-4">
+					<p:graphicImage
+						value="http://cdn1.ticbeat.com/wp-content/uploads/2015/01/usuario-online.jpg"
+						width="256"></p:graphicImage>
+					<br></br> Elegi la droga que mas te guste y hace tu pedido online
+				</div>
+
+				<div class="ui-grid-col-4">
+					<p:graphicImage
+						value="http://carlosfelice.com.ar/blog/wp-content/uploads/droga.jpg"
+						width="256"></p:graphicImage>
+					<br></br> La farmacia confirma y entrega el pedido en tu puerta
+				</div>
+
+			</div>
+
+		</div>
+
+
+	</div>
+
+
 
 </h:body>
 
