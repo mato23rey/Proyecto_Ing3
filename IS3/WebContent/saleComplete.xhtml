@@ -1,17 +1,23 @@
 <html xmlns="http://www.w3c.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
 <h:head>
 	<title>Farmacia Ya</title>
 </h:head>
 <h:body>
 	<h:outputScript library="js" name="sale.js" />
+	<h:outputScript library="js" name="index.js" />
 
 	<f:metadata>
 		<f:viewParam name="sale" value="#{saleBean.sale}" />
 	</f:metadata>
 
+	<ui:insert name="header">
+		<ui:include src="header.xhtml" />
+	</ui:insert>
 
 	<h:form>
 
@@ -48,14 +54,14 @@
 
 			<br></br> <br></br> <br></br>
 			<p:commandButton id="validateButton" value="Enviar"
-				actionListener="#{saleBean.complete}"
+				actionListener="#{saleBean.complete}" icon="ui-icon-check"
 				oncomplete="onSaleComplete(xhr, status, args)" />
 		</div>
 
-	</h:form>
+		<p:messages id="messages" showDetail="true" autoUpdate="true"
+			closable="true" />
 
-	<p:messages id="messages" showDetail="true" autoUpdate="true"
-		closable="true" />
+	</h:form>
 
 </h:body>
 

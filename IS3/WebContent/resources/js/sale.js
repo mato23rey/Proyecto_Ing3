@@ -1,7 +1,10 @@
 function onSaleComplete(xhr, status, args) {
-	if (!args.validationFailed && args.validated) {
-		setTimeout(function() {
-			window.location = args.target;
-		}, 500);
+	if (!args.validationFailed) {
+
+		if((args.scored && args.logued) && args.completed){
+			setTimeout(function() {
+				window.location = args.target;
+			}, 500);
+		}
 	}
 }

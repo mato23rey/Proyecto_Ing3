@@ -79,7 +79,7 @@ public class cartBean {
 				HttpSession session = httpServletRequest.getSession();
 
 				String address = session.getAttribute("search_address").toString();
-				int user_id = Integer.parseInt(httpServletRequest.getSession().getAttribute("user_session").toString());
+				int user_id = Integer.parseInt(session.getAttribute("user_session").toString());
 				String userEmail = httpServletRequest.getSession().getAttribute("user_email").toString();
 
 				if(OrderEmitter.emitOrder(address, user_id, cart,total,userEmail)){

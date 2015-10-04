@@ -128,9 +128,6 @@ public class loginBean {
 
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		context.addCallbackParam("login", logueado);
-		if (logueado){
-			context.addCallbackParam("target", "index.xhtml");
-		}
 	}
 
 	/**Método de acceso para realizar el logout
@@ -143,7 +140,7 @@ public class loginBean {
 			httpServletRequest.getSession().removeAttribute("user_session");
 		}
 
-		return "index";
+		return "index.xhtml";
 	}
 
 	/**Método que sirve para encontrar un usuario en base a su dirección de email
