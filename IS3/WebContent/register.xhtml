@@ -3,64 +3,87 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>Registro</title>
+	<title>Ingresar</title>
 </h:head>
 
-<h:body>
+<h:body style='background:none'>
 
 	<h:outputStylesheet library="css" name="index.css" />
 	<h:outputStylesheet library="css" name="login.css" />
 	<h:outputScript library="js" name="register.js" />
+	<h:outputScript library="js" name="index.js" />
 
-	<p:panelGrid columns="3" layout="grid">
 
-		<h:outputLabel value="" />
 
-		<h:form styleClass="textCenter" style='border: solid 2px black'>
-			<p:panel header="Registrarse">
-
-				<h:panelGrid columns="2" cellpadding="5" styleClass="textCenter">
-					<h:outputLabel for="email" value="Email" />
-					<p:inputText value="#{registerBean.email}" id="email"
-						required="true" label="email" requiredMessage="Ingresa tu email"
-						validatorMessage="Mail invalido">
-
-						<f:validateRegex
-							pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-					</p:inputText>
-
-					<h:outputLabel for="password" value="Clave" />
-					<p:password value="#{registerBean.pass}" id="password"
-						required="true" label="password"
-						requiredMessage="Ingresa tu password"
-						validatorMessage="La clave debe contener por lo menos una letra mayuscula,un numero o caracter especial y se por lo menos de 6 caracteres">
-
-						<f:validateRegex
-							pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" />
-
-					</p:password>
-
-					<h:outputLabel for="passwordV" value="Repetir clave" />
-					<p:password value="#{registerBean.passVer}" id="passwordV"
-						required="true" label="passwordV"
-						requiredMessage="Ingresa tu password otra vez" />
-
-					<f:facet name="footer">
-						<div class='textCenter'>
-							<p:commandButton id="registerButton" value="Registrase"
-								actionListener="#{registerBean.register}"
-								oncomplete="onRegister(xhr, status, args)" />
+	<div class="container textCenter">
+		<h2>Registro</h2>
+		<h:form>
+			<div class="form-group">
+				<div class="ui-grid ui-grid-responsive">
+					<div class="ui-grid-row">
+						<div class="ui-grid-col-4"></div>
+						<div class="ui-grid-col-1">
+							<b style='font-size: 1.8vw'>Email </b>
 						</div>
-					</f:facet>
-				</h:panelGrid>
-			</p:panel>
+						<div class="ui-grid-col-2">
+							<p:inputText value="#{registerBean.email}" id="email"
+								required="true" label="email" requiredMessage="Ingresá tu email"
+								validatorMessage="Mail invalido">
+
+								<f:validateRegex
+									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+							</p:inputText>
+
+						</div>
+					</div>
+					<br></br>
+					<div class="ui-grid-row">
+						<div class="ui-grid-col-4"></div>
+						<div class="ui-grid-col-1">
+							<b style='font-size: 1.8vw'>Password </b>
+						</div>
+						<div class="ui-grid-col-2">
+							<p:password value="#{registerBean.pass}" id="password"
+								required="true" label="password"
+								requiredMessage="Ingresá tu password"
+								validatorMessage="La clave debe contener por lo menos una letra mayúscula,un número o carácter especial y se por lo menos de 6 caracteres">
+
+								<f:validateRegex
+									pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" />
+
+							</p:password>
+
+						</div>
+					</div>
+					<br></br>
+					<div class="ui-grid-row">
+						<div class="ui-grid-col-4"></div>
+						<div class="ui-grid-col-1">
+							<b style='font-size: 1.5vw'>Repetir password </b>
+						</div>
+						<div class="ui-grid-col-2">
+							<p:password value="#{registerBean.passVer}" id="passwordV"
+								required="true" label="passwordV"
+								requiredMessage="Ingresá tu password otra vez" />
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<br></br>
+			<p:commandButton id="registerButton" value="Registrase"
+				actionListener="#{registerBean.register}"
+				oncomplete="onRegister(xhr, status, args)" />
+
 			<p:messages id="messages" showDetail="true" autoUpdate="true"
 				closable="true" />
+
 		</h:form>
+	</div>
 
-		<h:outputLabel value="" />
+	<h:outputLabel value="" />
 
-	</p:panelGrid>
 </h:body>
 
 </html>

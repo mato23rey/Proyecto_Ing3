@@ -18,7 +18,7 @@ import hibernate.User;
 public class validationBean {
 
 	/**
-	 * Codigo de verificaci髇 de la cuenta a validar
+	 * Codigo de verificaci贸n de la cuenta a validar
 	 */
 	/**
 	 * Email de la cuenta a validar
@@ -42,22 +42,22 @@ public class validationBean {
 	}
 
 	/**
-	 * @return Codigo de verificaci髇 de la cuenta a validar
+	 * @return Codigo de verificaci贸n de la cuenta a validar
 	 */
 	public String getValidationCode() {
 		return validationCode;
 	}
 
 	/**
-	 * @param validationCode Codigo de verificaci髇 de la cuenta a validar
+	 * @param validationCode Codigo de verificaci贸n de la cuenta a validar
 	 */
 	public void setValidationCode(String validationCode) {
 		this.validationCode = validationCode;
 	}
 
 	/**
-	 * M閠odo que indica si una cuenta esta validada o no
-	 * @return Estado de validaci髇 de la cuenta
+	 * M贸todo que indica si una cuenta esta validada o no
+	 * @return Estado de validaci贸n de la cuenta
 	 */
 	public boolean isValidated() {
 		return validated;
@@ -69,7 +69,7 @@ public class validationBean {
 	}
 
 	/**
-	 * M閠odo de acceso para realizar la validaci髇
+	 * M贸todo de acceso para realizar la validaci贸n
 	 * @param actionEvent Evento del sistema
 	 */
 	public void validate(ActionEvent actionEvent){
@@ -79,16 +79,21 @@ public class validationBean {
 		if(validationCode != null && email != null){
 			User user = validateAccount(email,validationCode);
 			if(user != null){
-				//Validacion exitosa
-				Session session = getSession();
-				Transaction t = session.beginTransaction();
-				user.setActivated(true);
-				session.merge(user);
-				session.flush();
-				t.commit();
-				msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "EXITO",
-						"Cuenta validada!");
-				validated = true;
+				if(!user.isActivated()){
+					//Validacion exitosa
+					Session session = getSession();
+					Transaction t = session.beginTransaction();
+					user.setActivated(true);
+					session.merge(user);
+					session.flush();
+					t.commit();
+					msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "EXITO",
+							"Cuenta validada!");
+					validated = true;
+				}else{
+					msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR",
+							"El c贸digo ha expirado");
+				}
 			}else{
 				//Display Error
 				msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error",
@@ -103,11 +108,11 @@ public class validationBean {
 
 
 	/**
-	 * M閠odo encargado de la validaci髇 de la cuenta
+	 * M贸todo encargado de la validaci贸n de la cuenta
 	 * 
 	 * @param email Email de la cuenta a validar
-	 * @param code C骴igo de verificaci髇 de la cuenta a validar
-	 * @return Usuario que coincida con el email y el c骴igo de validaci髇
+	 * @param code C贸digo de verificaci贸n de la cuenta a validar
+	 * @return Usuario que coincida con el email y el c贸digo de validaci贸n
 	 */
 	private User validateAccount(String email,String code){
 		Session session = getSession();
