@@ -263,7 +263,12 @@ public class searchBean implements Serializable{
 
 	public void selectCommerce(ActionEvent event){
 
-		comId = Integer.parseInt(event.getComponent().getAttributes().get("comId").toString());
+		//comId = Integer.parseInt(event.getComponent().getAttributes().get("comId").toString());
+		SearchResult result = (SearchResult) event.getComponent().getAttributes().get("com");
+		comId = result.getId();
+
+		HttpServletRequest httpServletRequest = (HttpServletRequest)faceContext.getExternalContext().getRequest();
+		httpServletRequest.getSession().setAttribute("commerce", result);
 
 		RequestContext context = RequestContext.getCurrentInstance();
 		context.addCallbackParam("target", "commerce.xhtml?comId="+comId);
