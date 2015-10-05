@@ -63,6 +63,7 @@
 						<div class="ui-grid-col-4">
 							<p:commandButton actionListener="#{searchBean.selectCommerce}"
 								value="Ver Productos" icon="ui-icon-tag"
+								styleClass="btn btn-default"
 								oncomplete="displayCommerce(xhr, status, args)">
 								<f:attribute name="com" value="#{result}" />
 							</p:commandButton>
