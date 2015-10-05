@@ -25,7 +25,7 @@ import search.SearchResult;
 
 /**
  * @author Seba
- * Clase encargada de la realización de las búsquedas
+ * Clase encargada de la realizaciï¿½n de las bï¿½squedas
  */
 public class searchBean implements Serializable{
 
@@ -38,10 +38,10 @@ public class searchBean implements Serializable{
 	private final FacesContext faceContext;
 
 	/**
-	 * Texto para realizar la búsqueda 
+	 * Texto para realizar la bï¿½squeda 
 	 */
 	/**
-	 * Coordenadas desde donde realizar la búsqueda
+	 * Coordenadas desde donde realizar la bï¿½squeda
 	 */
 	String address,data,cords;
 
@@ -76,14 +76,14 @@ public class searchBean implements Serializable{
 
 
 	/**
-	 * @return Texto para realizar la búsqueda
+	 * @return Texto para realizar la bï¿½squeda
 	 */
 	public String getData() {
 		return data;
 	}
 
 	/**
-	 * @param data Texto para realizar la búsqueda
+	 * @param data Texto para realizar la bï¿½squeda
 	 */
 	public void setData(String data) {
 		this.data = data;
@@ -97,7 +97,7 @@ public class searchBean implements Serializable{
 
 
 	/**
-	 * Método de acceso para realizar ls búsqueda
+	 * Mï¿½todo de acceso para realizar ls bï¿½squeda
 	 * @param actionEvent evento del sistema
 	 */
 	@SuppressWarnings("unchecked")
@@ -111,12 +111,12 @@ public class searchBean implements Serializable{
 
 		if(session.getAttribute("search_done") !=null){
 
-			data = session.getAttribute("search_data").toString();
-			if(session.getAttribute("cords") != null){
-				cords = session.getAttribute("cords").toString();
+			data = httpServletRequest.getSession().getAttribute("search_data").toString();
+			if(httpServletRequest.getSession().getAttribute("cords") != null){
+				cords = httpServletRequest.getSession().getAttribute("cords").toString();
 			}
-			address = session.getAttribute("search_address").toString();
-			result = (List<SearchResult>)session.getAttribute("search_result");
+			address = httpServletRequest.getSession().getAttribute("search_address").toString();
+			result = (List<SearchResult>)httpServletRequest.getSession().getAttribute("search_result");
 
 			orderByDistance();
 
@@ -127,7 +127,7 @@ public class searchBean implements Serializable{
 		}
 	}
 
-	/**Método de acceso para realizar la búsqueda
+	/**Mï¿½todo de acceso para realizar la bï¿½squeda
 	 * @param actionEvent Evento
 	 */
 	public void search(ActionEvent actionEvent) {
@@ -154,8 +154,8 @@ public class searchBean implements Serializable{
 	}
 
 	/**
-	 * Método encargado de invocar una API de geocodificación que traduce la dirección dada en coordenadas
-	 * @param address Dirección a traducir
+	 * Mï¿½todo encargado de invocar una API de geocodificaciï¿½n que traduce la direcciï¿½n dada en coordenadas
+	 * @param address Direcciï¿½n a traducir
 	 */
 	private String locateAddress(String address){
 		String coords = null;
@@ -181,8 +181,8 @@ public class searchBean implements Serializable{
 	}
 
 	/** 
-	 *Método encargado de lanzar la búsqueda en el sistema y redireccionar a la pantalla de resultados
-	 * @param data Texto de la búsqueda
+	 *Mï¿½todo encargado de lanzar la bï¿½squeda en el sistema y redireccionar a la pantalla de resultados
+	 * @param data Texto de la bï¿½squeda
 	 */
 
 	private void search(String data){
@@ -206,8 +206,11 @@ public class searchBean implements Serializable{
 
 			Query queryPha = session.createQuery("from Pharmacy where id = :id");
 			queryPha.setParameter("id", s.getPharmacy_id());
+
 			Pharmacy pharmacy = (Pharmacy) queryPha.uniqueResult();
 			sR.setPharmacyName(pharmacy.getName());
+			sR.setPharmacy_id(pharmacy.getId());
+
 			result.add(sR);
 			Flash theFlashScope = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 			theFlashScope.put("searchResults",result);
@@ -235,12 +238,6 @@ public class searchBean implements Serializable{
 			comX = Double.parseDouble(resultPos.split(",")[0]);
 			comY = Double.parseDouble(resultPos.split(",")[1]);
 
-			/*double quad = (comX-myX)+(comY-myY);
-			if(quad<0){
-				quad*=-1;
-			}
-
-			//double distance = Math.sqrt(quad);*/
 			double distance = Haversine.calculateDistance(myX, myY, comX, comY);
 
 			sR.setDistance(distance);
@@ -266,15 +263,11 @@ public class searchBean implements Serializable{
 
 	public void selectCommerce(ActionEvent event){
 
-		SearchResult com = (SearchResult)(event.getComponent().getAttributes().get("com"));
-		comId = com.getId();
+		comId = Integer.parseInt(event.getComponent().getAttributes().get("comId").toString());
 
 		RequestContext context = RequestContext.getCurrentInstance();
 		context.addCallbackParam("target", "commerce.xhtml?comId="+comId);
 
-		FacesContext  faceContext=FacesContext.getCurrentInstance();
-		HttpServletRequest httpServletRequest = (HttpServletRequest)faceContext.getExternalContext().getRequest();
-		httpServletRequest.getSession().setAttribute("commerce", com);
 	}
 
 }

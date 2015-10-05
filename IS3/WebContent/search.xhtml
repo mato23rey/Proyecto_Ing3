@@ -39,9 +39,11 @@
 				<div class="ui-grid ui-grid-responsive container">
 					<div class="ui-grid-row">
 						<div class="ui-grid-col-2">
-							<p:graphicImage
-								value="http://www.brandsoftheworld.com/sites/default/files/styles/logo-thumbnail/public/112011/logo_farmashop_vertical_diapo.png"
+
+							<h:graphicImage
+								value="#{logoDirectoryBean.DIRECTORY_ADDRESS}?id=#{result.pharmacy_id}"
 								height="128" width="128" />
+
 						</div>
 						<div class="ui-grid-col-4">
 							<p:outputPanel>

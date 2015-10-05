@@ -4,6 +4,5 @@
 	<class name="hibernate.Pharmacy" table="PHARMACY">
 		<id column="ID" name="id" type="integer" />
 		<property column="NAME" name="name" type="string" />
-		<property column="LOGO" name="logo" type="binary" />
 	</class>
 </hibernate-mapping>

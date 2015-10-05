@@ -13,10 +13,17 @@ public class SearchResult implements Serializable{
 
 	String pharmacyName,sucursalName,address;
 	int score = 0;
-	int id;
+	int id,pharmacy_id;
 
 	double distance;
 
+	public int getPharmacy_id() {
+		return pharmacy_id;
+	}
+
+	public void setPharmacy_id(int pharmacy_id) {
+		this.pharmacy_id = pharmacy_id;
+	}
 
 	public int getId() {
 		return id;

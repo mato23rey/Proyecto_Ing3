@@ -4,14 +4,7 @@ public class Pharmacy {
 
 	int id;
 	String name;
-	byte[] logo;
 
-	public byte[] getLogo() {
-		return logo;
-	}
-	public void setLogo(byte[] logo) {
-		this.logo = logo;
-	}
 	public int getId() {
 		return id;
 	}
