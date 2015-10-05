@@ -21,7 +21,8 @@
 
 	<h:form id="saleForm">
 
-		<div class="ui-grid ui-grid-responsive" style='text-align: center'>
+		<div class="ui-grid ui-grid-responsive ui-widget"
+			style='text-align: center'>
 			<div class="ui-grid-row">
 				<div class="ui-grid-col-5"></div>
 				<div class="ui-grid-col-2">
@@ -33,7 +34,8 @@
 				<div class="ui-grid-col-4"></div>
 				<div class="ui-grid-col-4">
 					<p:inputTextarea placeholder="Un comentario sobre el servicio"
-						rows="6" cols="33" value="#{saleBean.comment}" />
+						rows="6" cols="33" value="#{saleBean.comment}"
+						styleClass="form-control" />
 				</div>
 			</div>
 
@@ -57,7 +59,8 @@
 				onclick="PF('saleDialog').show();" icon="ui-icon-check" />
 
 			<p:dialog header="Enviar" widgetVar="saleDialog" resizable="false"
-				id='confirmDialog' closable="true" closeOnEscape="true">
+				id='confirmDialog' closable="true" closeOnEscape="true"
+				styleClass="btn btn-default">
 
 				<h3>Enviar?</h3>
 
@@ -65,10 +68,12 @@
 
 				<p:commandButton id="sendButton" value="SI"
 					actionListener="#{saleBean.complete}" icon="ui-icon-check"
+					styleClass="btn btn-default"
 					oncomplete="PF('saleDialog').hide();onSaleComplete(xhr, status, args)" />
 
 				<p:commandButton id="cancelButton" value="NO"
-					icon="ui-icon-closethick" oncomplete="PF('saleDialog').hide();" />
+					styleClass="btn btn-default" icon="ui-icon-closethick"
+					oncomplete="PF('saleDialog').hide();" />
 
 			</p:dialog>
 
