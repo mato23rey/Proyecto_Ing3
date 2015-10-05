@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3c.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Ingresar</title>
+</h:head>
+
+<h:body style='background:none'>
+
+	<h:outputStylesheet library="css" name="index.css" />
+	<h:outputStylesheet library="css" name="login.css" />
+	<h:outputScript library="js" name="login.js" />
+	<h:outputScript library="js" name="index.js" />
+
+	<div class="container textCenter">
+		<h2>Ingresar</h2>
+		<h:form>
+			<div class="form-group">
+				<div class="ui-grid ui-grid-responsive">
+					<div class="ui-grid-row">
+						<div class="ui-grid-col-4"></div>
+						<div class="ui-grid-col-1">
+							<b style='font-size: 1.8vw'>Email </b>
+						</div>
+						<div class="ui-grid-col-2">
+							<p:inputText value="#{loginBean.email}" id="email"
+								required="true" label="email" requiredMessage="Ingresá tu email"
+								validatorMessage="Mail inválido" styleClass="form-control">
+								<f:validateRegex
+									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+							</p:inputText>
+
+						</div>
+					</div>
+					<br></br>
+					<div class="ui-grid-row">
+						<div class="ui-grid-col-4"></div>
+						<div class="ui-grid-col-1">
+							<b style='font-size: 1.8vw'>Password </b>
+						</div>
+						<div class="ui-grid-col-2">
+							<p:password value="#{loginBean.pass}" id="password"
+								required="true" label="password" styleClass="form-control"
+								requiredMessage="Ingresá tu password" />
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<br></br>
+			<p:commandButton id="loginButton" value="Ingresar"
+				actionListener="#{loginBean.login}"
+				oncomplete="onLogin(xhr, status, args)" />
+
+			<p:messages id="messages" showDetail="true" autoUpdate="true"
+				closable="true" />
+
+		</h:form>
+	</div>
+
+	<h:outputLabel value="" />
+
+</h:body>
+
+</html>

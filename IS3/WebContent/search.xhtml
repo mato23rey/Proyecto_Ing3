@@ -1,0 +1,84 @@
+<html xmlns="http://www.w3c.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Farmacia Ya</title>
+</h:head>
+<h:body>
+
+	<h:outputStylesheet library="css" name="index.css" />
+	<h:outputScript library="js" name="search.js" />
+	<h:outputScript library="js" name="index.js" />
+
+	<ui:insert name="header">
+		<ui:include src="header.xhtml" />
+	</ui:insert>
+
+	<h:form id="searchForm">
+		<p:panel styleClass="textCenter">
+			<ui:insert name="searchTool">
+				<ui:include src="searchTool.xhtml" />
+			</ui:insert>
+		</p:panel>
+		<p:messages id="messages" showDetail="true" autoUpdate="true"
+			closable="true" />
+	</h:form>
+
+
+	<br></br>
+	<h:form>
+		<p:dataScroller value="#{searchBean.result}" var="result"
+			chunkSize="10" rendered="#{searchBean.withResult}"
+			styleClass="container">
+			<f:facet name="header">
+           Farmacias
+        </f:facet>
+			<p:panel>
+				<div class="ui-grid ui-grid-responsive container">
+					<div class="ui-grid-row">
+						<div class="ui-grid-col-2">
+
+							<p:graphicImage
+								value="#{logoDirectoryBean.DIRECTORY_ADDRESS}?id=#{result.pharmacy_id}"
+								height="128" width="128" />
+
+						</div>
+						<div class="ui-grid-col-4">
+							<p:outputPanel>
+								<h:panelGrid columns="2" cellpadding="2">
+									<h:outputText value="Nombre:" />
+									<h:outputText
+										value="#{result.pharmacyName} #{result.sucursalName}"
+										style="font-weight: bold" />
+
+									<h:outputText value="Direccion:" />
+									<h:outputText value="#{result.address}"
+										style="font-weight: bold" />
+
+									<h:outputText value="Calificacion:" />
+									<p:rating value="#{result.score}" readonly="true" />
+								</h:panelGrid>
+							</p:outputPanel>
+						</div>
+						<div class="ui-grid-col-4">
+							<p:commandButton actionListener="#{searchBean.selectCommerce}"
+								value="Ver Productos" icon="ui-icon-tag"
+								styleClass="btn btn-default"
+								oncomplete="displayCommerce(xhr, status, args)">
+								<f:attribute name="com" value="#{result}" />
+							</p:commandButton>
+						</div>
+					</div>
+				</div>
+			</p:panel>
+		</p:dataScroller>
+
+		<p:messages id="messages" showDetail="true" autoUpdate="true"
+			closable="true" rendered="#{!searchBean.withResult}" />
+	</h:form>
+
+</h:body>
+
+</html>

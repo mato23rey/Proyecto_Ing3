@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping">
+<hibernate-mapping>
+	<class name="hibernate.Sale_Product" table="sale_product">
+		<composite-id>
+			<key-property name="product_id" column="PRODUCT_ID"
+				type="integer" />
+			<key-property name="sale_id" column="SALE_ID" type="integer" />
+		</composite-id>
+
+		<property column="CANT" name="cant" type="integer" />
+	</class>
+</hibernate-mapping>
