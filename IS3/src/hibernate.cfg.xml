@@ -6,9 +6,9 @@
 <hibernate-configuration>
 	<session-factory>
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/is3</property>
-		<property name="hibernate.connection.username">root</property>
-		<property name="hibernate.connection.password"></property>
+		<property name="hibernate.connection.url">jdbc:mysql://ec2-54-172-207-238.compute-1.amazonaws.com:3306/FARMACIA</property>
+		<property name="hibernate.connection.username">desarrollo</property>
+		<property name="hibernate.connection.password">desarrollo</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="hibernate.current_session_context_class">thread</property>
 
