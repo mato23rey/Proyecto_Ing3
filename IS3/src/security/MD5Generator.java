@@ -10,8 +10,9 @@ public class MD5Generator {
 	 * @param key Texto a encriptar
 	 * @return Texto encriptado
 	 */
+	private final static String salt = "aa%4355$GG";
 	public static String generate(String key){
-
+			key = key+salt;
 		try {
 			java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
 			byte[] array = md.digest(key.getBytes());
