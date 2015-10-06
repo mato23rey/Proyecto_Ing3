@@ -6,7 +6,7 @@ package security;
  */
 public class MD5Generator {
 
-	/** Método que genera la encriptación MD5 de una cadena de texto ingresada
+	/** MÃ©todo que genera la encriptaciÃ³n MD5 de una cadena de texto ingresada
 	 * @param key Texto a encriptar
 	 * @return Texto encriptado
 	 */

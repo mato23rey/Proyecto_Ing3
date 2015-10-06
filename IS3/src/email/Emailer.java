@@ -15,9 +15,9 @@ import javax.mail.internet.MimeMessage;
 public class Emailer {
 
 	/**
-	 * MÈtodo encargado del envio de emails en base a los par·metros ingresados
+	 * M√©todo encargado del envio de emails en base a los par√°metros ingresados
 	 * 
-	 * @param to DirecciÛn del destino del correo
+	 * @param to Direcci√≥n del destino del correo
 	 * @param subject Asunto del correo a enviar
 	 * @param content Contenido del correo a enviar
 	 */
@@ -27,7 +27,7 @@ public class Emailer {
 		// Nombre del host de correo, es smtp.gmail.com
 		props.setProperty("mail.smtp.host", "smtp.gmail.com");
 
-		// TLS si est· disponible
+		// TLS si esta disponible
 		props.setProperty("mail.smtp.starttls.enable", "true");
 
 		// Puerto de gmail para envio de correos

@@ -2,7 +2,7 @@
 
 /**
  * @author Seba
- *Clase que se utiliza para manejar la pantalla principal de la aplicación
+ *Clase que se utiliza para manejar la pantalla principal de la aplicaciÃ³n
  */
 public class mainBean {
 

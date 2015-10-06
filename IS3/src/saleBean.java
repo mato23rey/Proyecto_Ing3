@@ -82,7 +82,7 @@ public class saleBean {
 						updateSale(saleObj,comment,score);
 
 						msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Exito",
-								"Se ha completado correctamente la acción");
+								"Se ha completado correctamente la acciï¿½n");
 						completed = true;
 					}else{
 						msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
@@ -100,7 +100,7 @@ public class saleBean {
 				httpServletRequest.getSession().setAttribute("saleScore", score);
 
 				msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error",
-						"Debes loguearte para poder realizar la acción");
+						"Debes loguearte para poder realizar la acciÃ³n");
 			}
 
 		}

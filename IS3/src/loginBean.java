@@ -12,14 +12,14 @@ import security.MD5Generator;
 
 /**
  * @author Seba
- *	Clase que se utiliza para manejar el sistema de login de la aplicación
+ *	Clase que se utiliza para manejar el sistema de login de la aplicaciÃ³n
  */
 public class loginBean {
 
 	String redirectUrl;
 
 	/**
-	 * ID del usuario que se encuentra logueado, -1 para indicar que no hay nadie logueado. Sirve para renderizar correctamente la página
+	 * ID del usuario que se encuentra logueado, -1 para indicar que no hay nadie logueado. Sirve para renderizar correctamente la pï¿½gina
 	 */
 	int userId = -1;
 
@@ -72,7 +72,7 @@ public class loginBean {
 	}
 
 	/**
-	 * Función que permite determinar si hay un usuario logueado o no. Sirve para renderizar correctamente la página principal
+	 * FunciÃ³n que permite determinar si hay un usuario logueado o no. Sirve para renderizar correctamente la pÃ¡gina principal
 	 * @return Booleano indicando si existe un usuario logueado o no
 	 */
 	public boolean isLogued(){
@@ -84,7 +84,7 @@ public class loginBean {
 	private final FacesContext faceContext;
 
 	/**
-	 * Constructor de la clase. Se establece el valor de sesión del usuario
+	 * Constructor de la clase. Se establece el valor de sesiÃ³n del usuario
 	 */
 	public loginBean(){
 		faceContext=FacesContext.getCurrentInstance();
@@ -95,7 +95,7 @@ public class loginBean {
 	}
 
 	/**
-	 * Método de acceso para realizar el login
+	 * Mï¿½todo de acceso para realizar el login
 	 * @param actionEvent evento del sistema
 	 */
 	public void login(ActionEvent actionEvent) {
@@ -103,7 +103,7 @@ public class loginBean {
 
 		RequestContext context = RequestContext.getCurrentInstance();
 		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error",
-				"Credenciales no válidas");
+				"Credenciales no vï¿½lidas");
 
 		if (email != null && pass != null) {
 			User user = searchInDB(email);
@@ -130,8 +130,8 @@ public class loginBean {
 		context.addCallbackParam("login", logueado);
 	}
 
-	/**Método de acceso para realizar el logout
-	 * @return String indicando a donde redireccionar la página
+	/**MÃ©todo de acceso para realizar el logout
+	 * @return String indicando a donde redireccionar la pÃ¡gina
 	 */
 	public String logout(){
 		System.out.println("LOGOUT");
@@ -143,7 +143,7 @@ public class loginBean {
 		return "index.xhtml";
 	}
 
-	/**Método que sirve para encontrar un usuario en base a su dirección de email
+	/**Metodo que sirve para encontrar un usuario en base a su direcciÃ³n de email
 	 * @param email Email del usuario
 	 * @return Usuario en caso de encontrarse un usuario con el email ingresado
 	 */

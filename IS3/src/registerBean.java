@@ -17,7 +17,7 @@ import security.MD5Generator;
 
 /**
  * @author Seba
- *Clase que se utiliza para manejar el registro de la aplicación
+ *Clase que se utiliza para manejar el registro de la aplicaciÃ³n
  */
 public class registerBean {
 
@@ -28,7 +28,7 @@ public class registerBean {
 	 * Password del usuario a registrar
 	 */
 	/**
-	 * Verificación de la password
+	 * Verificaciï¿½n de la password
 	 */
 	String email,pass,passVer;
 
@@ -61,21 +61,21 @@ public class registerBean {
 	}
 
 	/**
-	 * @return Verificación de la password
+	 * @return Verificaciï¿½n de la password
 	 */
 	public String getPassVer() {
 		return passVer;
 	}
 
 	/**
-	 * @param passVer Verificación de la password
+	 * @param passVer Verificaciï¿½n de la password
 	 */
 	public void setPassVer(String passVer) {
 		this.passVer = passVer;
 	}
 
 	/**
-	 * Método de acceso para realizar el registro. Si el email no se encuentra registrado entonces se genera una nueva cuenta.
+	 * MÃ©todo de acceso para realizar el registro. Si el email no se encuentra registrado entonces se genera una nueva cuenta.
 	 * @param actionEvent Evento
 	 */
 	public void register(ActionEvent actionEvent){
@@ -122,13 +122,13 @@ public class registerBean {
 				}
 			}else{
 				msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error",
-						"Las contraseñas no coinciden");
+						"Las contraseï¿½as no coinciden");
 			}
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
 	}
 
-	/**Método encargado de la búsqueda de un usuario dado un email
+	/**MÃ©todo encargado de la bÃºsqueda de un usuario dado un email
 	 * @param email Email del usuario a buscar
 	 * @return True si el usuario existe o False si no existe
 	 */
@@ -152,8 +152,8 @@ public class registerBean {
 
 	}
 
-	/**Método encargado de generar un código de 44 caracteres que se utilizará en la validación de cuentas
-	 * @return Código de validación para la nueva cuenta
+	/**MÃ©todo encargado de generar un cï¿½digo de 44 caracteres que se utilizarÃ¡ en la validaciÃ³n de cuentas
+	 * @return CÃ³digo de validaciÃ³n para la nueva cuenta
 	 */
 	private String generateValidationCode(){
 		String code = "";
