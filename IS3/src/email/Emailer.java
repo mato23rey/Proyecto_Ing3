@@ -58,9 +58,8 @@ public class Emailer {
 
 			Transport t = session.getTransport("smtp");
 
-			//OMFG!!
-			t.connect("farmya2015@gmail.com","farmya2015UCU"); //OMFG!! 
-			//OMFG!!
+			t.connect("farmya2015@gmail.com","farmya2015UCU");
+
 			
 			t.sendMessage(message,message.getAllRecipients());
 

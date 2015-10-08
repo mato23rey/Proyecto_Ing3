@@ -148,7 +148,7 @@ public class searchBean implements Serializable{
 				httpServletRequest.getSession().setAttribute("search_done", true);
 
 			}else{
-				//FUCK YOU!!
+				
 			}
 		}
 	}
