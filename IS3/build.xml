@@ -116,6 +116,8 @@
         <antcall target="build"/>
     </target>
               	
+              	
+              	
             	<!-- Creates Javadoc -->
               	  	  <target name="generateJavadoc">
               	  	  	<delete dir="doc"/>
@@ -127,16 +129,13 @@
               	  	    </javadoc>
               	  	  </target>
               	
-              	 <taskdef resource="checkstyletask.properties" classpath="${basedir}/checkstyle/checkstyle-6.11.2-all.jar" />
-
-              	    <target name="checkStyle">
-              	        <checkstyle config="checkstyle/sun_checks.xml"
-              	            failureProperty="checkstyle.failure" failOnViolation="false">
-              	            <fileset dir="src" includes="**/*.java" />
-              	            <formatter type="plain" />
-              	        </checkstyle>
-
-              	        <echo>Checkstyle is Done</echo>
-              	    </target>
+              	<taskdef classpath="${checkstyle.jar}" resource="checkstyletask.properties" />
+              	<target name="checkstyle">
+              		<mkdir dir="reports" />
+              		<checkstyle config="sun_checks.xml">
+              			<formatter type="xml" tofile="reports/checkstyle-result.xml"/>
+              			<fileset dir="src" includes="**/*.java"/>
+              		</checkstyle>
+              	</target>
 
 </project>
