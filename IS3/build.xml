@@ -132,7 +132,7 @@
               	
               	<taskdef resource="checkstyletask.properties">
               	        <classpath>
-              	                <pathelement location=".checkstyle/checkstyle.jar"/>
+              	                <pathelement location="./checkstyle/checkstyle.jar"/>
               	        </classpath>
               	</taskdef>
               	
