@@ -129,10 +129,16 @@
               	  	    </javadoc>
               	  	  </target>
               	
-              	<taskdef classpath="${checkstyle.jar}" resource="checkstyletask.properties" />
+              	
+              	<taskdef resource="checkstyletask.properties">
+              	        <classpath>
+              	                <pathelement location="checkstyle/checkstyle.jar"/>
+              	        </classpath>
+              	</taskdef>
+              	
               	<target name="checkstyle">
               		<mkdir dir="reports" />
-              		<checkstyle config="sun_checks.xml">
+              		<checkstyle config="sun_checks.xml" failOnViolation="false">
               			<formatter type="xml" tofile="reports/checkstyle-result.xml"/>
               			<fileset dir="src" includes="**/*.java"/>
               		</checkstyle>
