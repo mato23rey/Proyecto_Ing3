@@ -10,7 +10,7 @@ import java.util.Random;
  */
 public class SearchResult implements Serializable {
 
-	/** ID de serialización. */
+	/**ID de serialización.*/
 	private static final long serialVersionUID = 1L;
 
 
@@ -112,9 +112,7 @@ public class SearchResult implements Serializable {
 		this.score = score;
 	}
 
-	/**
-	 * 
-	 */
+	/**Constructor de la clase.*/
 	public SearchResult(){
 		Random r = new Random();
 		score = r.nextInt(5);

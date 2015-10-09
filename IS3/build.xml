@@ -38,6 +38,7 @@
     <path id="Web App Libraries.libraryclasspath">
         <pathelement location="WebContent/WEB-INF/lib/activation.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/antlr-2.7.7.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/checkstyle-6.11.2-all.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/dom4j-1.6.1.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/geronimo-jta_1.1_spec-1.1.1.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/hibernate-commons-annotations-5.0.0.Final.jar"/>
@@ -83,7 +84,6 @@
         <mkdir dir="build/classes"/>
         <copy includeemptydirs="false" todir="build/classes">
             <fileset dir="src">
-                <exclude name="**/*.launch"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
@@ -116,14 +116,27 @@
         <antcall target="build"/>
     </target>
               	
-  	<!-- Creates Javadoc -->
-  	  	  <target name="generateJavadoc">
-  	  	  	<delete dir="doc"/>
-  	  	  	<mkdir dir="doc"/>
-  	  	    <javadoc packagenames="src" sourcepath="src" destdir="doc">
-  	  	       <fileset dir="src">
-  	  	                <include name="*.java" />
-  	  	           </fileset>
-  	  	    </javadoc>
-  	  	  </target>
+            	<!-- Creates Javadoc -->
+              	  	  <target name="generateJavadoc">
+              	  	  	<delete dir="doc"/>
+              	  	  	<mkdir dir="doc"/>
+              	  	    <javadoc packagenames="src" sourcepath="src" destdir="doc">
+              	  	       <fileset dir="src">
+              	  	                <include name="*.java" />
+              	  	           </fileset>
+              	  	    </javadoc>
+              	  	  </target>
+              	
+              	 <taskdef resource="checkstyletask.properties" classpath="${basedir}/checkstyle/checkstyle-6.11.2-all.jar" />
+
+              	    <target name="checkStyle">
+              	        <checkstyle config="checkstyle/sun_checks.xml"
+              	            failureProperty="checkstyle.failure" failOnViolation="false">
+              	            <fileset dir="src" includes="**/*.java" />
+              	            <formatter type="plain" />
+              	        </checkstyle>
+
+              	        <echo>Checkstyle is Done</echo>
+              	    </target>
+
 </project>
