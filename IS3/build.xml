@@ -131,7 +131,7 @@
               	
               	
               	 <taskdef resource="checkstyletask.properties"
-              	           classpath="./checkstyle/checkstyle-all-4.4.jar"/>
+              	           classpath="./checkstyle/checkstyle-5.2-all.jar"/>
               	
               	<target name="checkstyle">
               		<mkdir dir="reports" />
