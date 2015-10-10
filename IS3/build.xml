@@ -136,7 +136,7 @@
               	<target name="checkstyle">
               		<mkdir dir="reports" />
               		<checkstyle config="checkstyle/sun_checks.xml" failOnViolation="false">
-              			<formatter type="xml" tofile="reports/checkstyle-result.xml"/>
+              			<formatter  tofile="reports/checkstyle-result.xml"/>
               			<fileset dir="src" includes="**/*.java"/>
               		</checkstyle>
               	</target>
