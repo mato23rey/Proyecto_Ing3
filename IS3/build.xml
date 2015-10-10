@@ -130,11 +130,8 @@
               	  	  </target>
               	
               	
-              	<taskdef resource="checkstyletask.properties">
-              	        <classpath>
-              	                <pathelement location="./checkstyle/checkstyle.jar"/>
-              	        </classpath>
-              	</taskdef>
+              	 <taskdef resource="checkstyletask.properties"
+              	           classpath="./checkstyle/checkstyle-all-4.4.jar"/>
               	
               	<target name="checkstyle">
               		<mkdir dir="reports" />
