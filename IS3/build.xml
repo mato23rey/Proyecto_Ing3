@@ -118,27 +118,37 @@
               	
               	
               	
-            	<!-- Creates Javadoc -->
-              	  	  <target name="generateJavadoc">
-              	  	  	<delete dir="doc"/>
-              	  	  	<mkdir dir="doc"/>
-              	  	    <javadoc packagenames="src" sourcepath="src" destdir="doc">
-              	  	       <fileset dir="src">
-              	  	                <include name="*.java" />
-              	  	           </fileset>
-              	  	    </javadoc>
-              	  	  </target>
+	<!-- Creates Javadoc -->
+  	  	  <target name="generateJavadoc">
+  	  	  	<delete dir="doc"/>
+  	  	  	<mkdir dir="doc"/>
+  	  	    <javadoc packagenames="src" sourcepath="src" destdir="doc">
+  	  	       <fileset dir="src">
+  	  	                <include name="*.java" />
+  	  	           </fileset>
+  	  	    </javadoc>
+  	  	  </target>
               	
               	
-              	 <taskdef resource="checkstyletask.properties"
-              	           classpath="./checkstyle/checkstyle-5.2-all.jar"/>
+  	 <taskdef resource="checkstyletask.properties"
+  	           classpath="./checkstyle/checkstyle-5.2-all.jar"/>
               	
-              	<target name="checkstyle">
-              		<mkdir dir="reports" />
-              		<checkstyle config="checkstyle/sun_checks.xml" failOnViolation="false">
-              			<formatter type="xml" tofile="reports/checkstyle-result.xml"/>
-              			<fileset dir="src" includes="**/*.java"/>
-              		</checkstyle>
-              	</target>
+  	<target name="checkstyle">
+  		<mkdir dir="reports" />
+  		<checkstyle config="checkstyle/sun_checks.xml" failOnViolation="false">
+  			<formatter type="xml" tofile="reports/checkstyle-result.xml"/>
+  			<fileset dir="src" includes="**/*.java"/>
+  		</checkstyle>
+  	</target>
+              	
+  	<target name="build-war">
+  	   <war destfile="war/is3.war" webxml="WebContent/WEB-INF/web.xml">
+  	      <fileset dir="WebContent/">
+  	         <include name="**/*.*"/>
+  	      </fileset>
+  	  	
+  	  <classes dir = "src/"/>
+  	   </war>
+  	</target>
 
 </project>
