@@ -113,7 +113,7 @@ public class SearchResult implements Serializable {
 	}
 
 	/**Constructor de la clase.*/
-	public SearchResult(){
+	public SearchResult() {
 		Random r = new Random();
 		score = r.nextInt(5);
 	}
