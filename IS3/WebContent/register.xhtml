@@ -3,27 +3,46 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>Ingresar</title>
+	<title>Registrese</title>
+
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	</f:facet>
+
+	<f:facet name="middle">
+		<h:outputStylesheet name="bootstrap/css/bootstrap.css" />
+
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />
+
+		<h:outputScript name="bootstrap/js/bootstrap.js" />
+	</f:facet>
+
+	<f:facet name="last">
+
+	</f:facet>
+
+	<h:outputStylesheet library="css" name="index.css" />
+	<h:outputScript library="js" name="index.js" />
+
 </h:head>
 
 <h:body style='background:none'>
 
-	<h:outputStylesheet library="css" name="index.css" />
-	<h:outputStylesheet library="css" name="login.css" />
-	<h:outputScript library="js" name="register.js" />
-	<h:outputScript library="js" name="index.js" />
-
 
 
 	<div class="container textCenter">
-		<h2>Registro</h2>
+		<h2>Registrate, es gratis!</h2>
 		<h:form>
 			<div class="form-group">
 				<div class="ui-grid ui-grid-responsive">
 					<div class="ui-grid-row">
 						<div class="ui-grid-col-4"></div>
 						<div class="ui-grid-col-1">
-							<b style='font-size: 1.8vw'>Email </b>
+							<b style='font-size: 1.0vw'>Email </b>
 						</div>
 						<div class="ui-grid-col-2">
 							<p:inputText value="#{registerBean.email}" id="email"
@@ -40,13 +59,13 @@
 					<div class="ui-grid-row">
 						<div class="ui-grid-col-4"></div>
 						<div class="ui-grid-col-1">
-							<b style='font-size: 1.8vw'>Password </b>
+							<b style='font-size: 1.0vw'>Password </b>
 						</div>
 						<div class="ui-grid-col-2">
 							<p:password value="#{registerBean.pass}" id="password"
 								required="true" label="password"
 								requiredMessage="Ingresá tu password"
-								validatorMessage="La clave debe contener por lo menos una letra mayúscula,un número o carácter especial y se por lo menos de 6 caracteres">
+								validatorMessage="La clave debe contener por lo menos una letra mayÃºscula,un nÃºmero o carácter especial y se por lo menos de 6 caracteres">
 
 								<f:validateRegex
 									pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" />
@@ -59,7 +78,7 @@
 					<div class="ui-grid-row">
 						<div class="ui-grid-col-4"></div>
 						<div class="ui-grid-col-1">
-							<b style='font-size: 1.5vw'>Repetir password </b>
+							<b style='font-size: 0.8vw'>Repetir password </b>
 						</div>
 						<div class="ui-grid-col-2">
 							<p:password value="#{registerBean.passVer}" id="passwordV"
@@ -72,8 +91,9 @@
 
 			</div>
 			<br></br>
-			<p:commandButton id="registerButton" value="Registrase"
+			<p:commandButton id="registerButton" value="Registrase"				
 				actionListener="#{registerBean.register}"
+				styleClass="btn btn-primary btn-lg active"
 				oncomplete="onRegister(xhr, status, args)" />
 
 			<p:messages id="messages" showDetail="true" autoUpdate="true"

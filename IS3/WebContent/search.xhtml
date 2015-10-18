@@ -4,31 +4,76 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-	<title>Farmacia Ya</title>
+	<title>Búsqueda</title>
+
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	</f:facet>
+
+	<f:facet name="middle">
+		<h:outputStylesheet name="bootstrap/css/bootstrap.css" />
+
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />
+
+		<h:outputScript name="bootstrap/js/bootstrap.js" />
+	</f:facet>
+
+	<f:facet name="last">
+
+	</f:facet>
+
+	<h:outputStylesheet library="css" name="index.css" />
+	<h:outputScript library="js" name="index.js" />
+
 </h:head>
-<h:body>
+<h:body onload="getLocation()">
 
 	<h:outputStylesheet library="css" name="index.css" />
 	<h:outputScript library="js" name="search.js" />
 	<h:outputScript library="js" name="index.js" />
+	<div
+		style='background: url(http://pharmacy7rx.com/wp-content/uploads/2013/07/1-3_low.jpg); background-repeat: no-repeat; height: 50vh; background-size: cover'>
+		<ui:insert name="header">
+			<ui:include src="header.xhtml" />
+		</ui:insert>
 
-	<ui:insert name="header">
-		<ui:include src="header.xhtml" />
-	</ui:insert>
+		<div class="textCenter container">
+			<div class="ui-grid ui-grid-responsive ui-widget">
+				<div class="ui-grid-row">
+					<div class="ui-grid-col-1"></div>
+					<div class="ui-grid-col-10">
+						<h:form>
+							<div class="panel panel-primary">
+								<div align="center" class="panel-heading">
+									<H4>
+										<b>Solicitá tus medicamentos online</b>
+									</H4>
+								</div>
+								<div class="panel-body">
+									<ui:insert name="searchTool">
+										<ui:include src="searchTool.xhtml" />
+									</ui:insert>
+								</div>
+							</div>
 
-	<h:form id="searchForm">
-		<p:panel styleClass="textCenter">
-			<ui:insert name="searchTool">
-				<ui:include src="searchTool.xhtml" />
-			</ui:insert>
-		</p:panel>
-		<p:messages id="messages" showDetail="true" autoUpdate="true"
-			closable="true" />
-	</h:form>
+							<p:messages id="messages" showDetail="true" autoUpdate="true"
+								closable="true" />
+						</h:form>
+					</div>
+					<div class="ui-grid-col-1"></div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 	<br></br>
 	<h:form>
+	
 		<p:dataScroller value="#{searchBean.result}" var="result"
 			chunkSize="10" rendered="#{searchBean.withResult}"
 			styleClass="container">
@@ -65,7 +110,7 @@
 						<div class="ui-grid-col-4">
 							<p:commandButton actionListener="#{searchBean.selectCommerce}"
 								value="Ver Productos" icon="ui-icon-tag"
-								styleClass="btn btn-default"
+								styleClass="btn btn-primary btn-lg active"
 								oncomplete="displayCommerce(xhr, status, args)">
 								<f:attribute name="com" value="#{result}" />
 							</p:commandButton>
