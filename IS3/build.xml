@@ -59,6 +59,7 @@
     <path id="EAR Libraries.libraryclasspath"/>
     <path id="IS3.classpath">
         <pathelement location="build/classes"/>
+    	<pathelement location="WebContent/WEB-INF/lib/javax.faces.jar"/>
         <path refid="Apache Tomcat v8.0 [Apache Tomcat v8.0].libraryclasspath"/>
         <path refid="Web App Libraries.libraryclasspath"/>
         <path refid="JSF 2.2 (Mojarra 2.2.0).userclasspath"/>
@@ -77,7 +78,7 @@
         <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-5.0.8-bin.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/primefaces-5.2.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/json.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/javax.faces.jar"/>
+        
         <path refid="EAR Libraries.libraryclasspath"/>
     </path>
     <target name="init">
@@ -94,15 +95,18 @@
     <target depends="clean" name="cleanall"/>
     <target depends="build-subprojects,build-project" name="build"/>
     <target name="build-subprojects"/>
+        
+              	
     <target depends="init" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
-    	<echo>Classpath is ${classpathProp}</echo>
     	<echo>Starting JAVAC</echo>
         <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="true" source="${source}" target="${target}">
             <src path="src"/>
             <classpath refid="IS3.classpath"/>
         </javac>
     </target>
+              	
+              	
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
     <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
         <copy todir="${ant.library.dir}">
@@ -117,7 +121,6 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-              	
               	
 	<!-- Creates Javadoc -->
 	  	  	  <target name="generateJavadoc">
