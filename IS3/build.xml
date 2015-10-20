@@ -155,7 +155,7 @@
               	<property name="project-name" value="${ant.project.name}" />
               		<property name="builder" value="Ant Script" />
 
-              		<property name="war-file-name" value="${project-name}.war" />
+              		<property name="war-file-name" value="farmaya.war" />
               		<property name="source-directory" value="src" />
               		<property name="classes-directory" value="build/classes" />
               		<property name="web-directory" value="WebContent" />
