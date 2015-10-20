@@ -48,6 +48,7 @@
         <pathelement location="WebContent/WEB-INF/lib/java-mail-1.4.4.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/javassist-3.18.1-GA.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/javax.faces.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/javax.servlet.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/jboss-logging-3.3.0.Final.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/json.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-5.0.8-bin.jar"/>
@@ -59,7 +60,6 @@
     <path id="EAR Libraries.libraryclasspath"/>
     <path id="IS3.classpath">
         <pathelement location="build/classes"/>
-    	<pathelement location="WebContent/WEB-INF/lib/javax.faces.jar"/>
         <path refid="Apache Tomcat v8.0 [Apache Tomcat v8.0].libraryclasspath"/>
         <path refid="Web App Libraries.libraryclasspath"/>
         <path refid="JSF 2.2 (Mojarra 2.2.0).userclasspath"/>
@@ -78,7 +78,8 @@
         <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-5.0.8-bin.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/primefaces-5.2.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/json.jar"/>
-        
+        <pathelement location="WebContent/WEB-INF/lib/javax.faces.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/javax.servlet.jar"/>
         <path refid="EAR Libraries.libraryclasspath"/>
     </path>
     <target name="init">
@@ -95,18 +96,13 @@
     <target depends="clean" name="cleanall"/>
     <target depends="build-subprojects,build-project" name="build"/>
     <target name="build-subprojects"/>
-        
-              	
     <target depends="init" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
-    	<echo>Starting JAVAC</echo>
-        <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="true" source="${source}" target="${target}">
+        <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
             <classpath refid="IS3.classpath"/>
         </javac>
     </target>
-              	
-              	
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
     <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
         <copy todir="${ant.library.dir}">
@@ -122,69 +118,69 @@
         <antcall target="build"/>
     </target>
               	
-	<!-- Creates Javadoc -->
-	  	  	  <target name="generateJavadoc">
-	  	  	  	<delete dir="doc"/>
-	  	  	  	<mkdir dir="doc"/>
-	  	  	    <javadoc packagenames="src" sourcepath="src" destdir="doc">
-	  	  	       <fileset dir="src">
-	  	  	                <include name="*.java" />
-	  	  	           </fileset>
-	  	  	    </javadoc>
-	  	  	  </target>
-	              	
-	              	
-	  	 <taskdef resource="checkstyletask.properties"
-	  	           classpath="./checkstyle/checkstyle-5.2-all.jar"/>
-	              	
-	  	<target name="checkstyle">
-	  		<mkdir dir="reports" />
-	  		<checkstyle config="checkstyle/sun_checks.xml" failOnViolation="false">
-	  			<formatter type="xml" tofile="reports/checkstyle-result.xml"/>
-	  			<fileset dir="src" includes="**/*.java"/>
-	  		</checkstyle>
-	  	</target>
-	              	
-	  	<target name="build-war">
-	  		<mkdir dir="war" />
-	  	   <war warfile="war/is3.war" webxml="WebContent/WEB-INF/web.xml">
-	  	      <fileset dir="WebContent/">
-	  	         <include name="**/*.*"/>
-	  	      </fileset>
-	  	  	
-	  	  <classes dir = "src/"/>
-	  	   </war>
-	  	</target>
-	              	
-	              	<property name="project-name" value="${ant.project.name}" />
-	              		<property name="builder" value="Ant Script" />
+            	<!-- Creates Javadoc -->
+            	  	  	  <target name="generateJavadoc">
+            	  	  	  	<delete dir="doc"/>
+            	  	  	  	<mkdir dir="doc"/>
+            	  	  	    <javadoc packagenames="src" sourcepath="src" destdir="doc">
+            	  	  	       <fileset dir="src">
+            	  	  	                <include name="*.java" />
+            	  	  	           </fileset>
+            	  	  	    </javadoc>
+            	  	  	  </target>
+            	              	
+            	              	
+            	  	 <taskdef resource="checkstyletask.properties"
+            	  	           classpath="./checkstyle/checkstyle-5.2-all.jar"/>
+            	              	
+            	  	<target name="checkstyle">
+            	  		<mkdir dir="reports" />
+            	  		<checkstyle config="checkstyle/sun_checks.xml" failOnViolation="false">
+            	  			<formatter type="xml" tofile="reports/checkstyle-result.xml"/>
+            	  			<fileset dir="src" includes="**/*.java"/>
+            	  		</checkstyle>
+            	  	</target>
+            	              	
+            	  	<target name="build-war">
+            	  		<mkdir dir="war" />
+            	  	   <war warfile="war/is3.war" webxml="WebContent/WEB-INF/web.xml">
+            	  	      <fileset dir="WebContent/">
+            	  	         <include name="**/*.*"/>
+            	  	      </fileset>
+            	  	  	
+            	  	  <classes dir = "src/"/>
+            	  	   </war>
+            	  	</target>
+            	              	
+            	              	<property name="project-name" value="${ant.project.name}" />
+            	              		<property name="builder" value="Ant Script" />
 
-	              		<property name="war-file-name" value="farmaya.war" />
-	              		<property name="source-directory" value="src" />
-	              		<property name="classes-directory" value="build/classes" />
-	              		<property name="web-directory" value="WebContent" />
-	              		<property name="web-xml-file" value="WebContent/WEB-INF/web.xml" />
-	              		<tstamp prefix="build-info">
-	              			<format property="current-date" pattern="d-MMMM-yyyy" locale="en" />
-	              			<format property="current-time" pattern="hh:mm:ss a z" locale="en" />
-	              		</tstamp>
-	              		<property name="build-directory" value="build" />
-	              	
-	              	<target name="war" depends="">
-	              			<mkdir dir="${build-directory}" />
-	              			<delete file="${build-directory}/${war-file-name}" />
-	              			<war warfile="${build-directory}/${war-file-name}" webxml="${web-xml-file}">
-	              				<classes dir="${classes-directory}" />
-	              				<fileset dir="${web-directory}">
-	              					<!-- Need to exclude it since webxml is an attribute of the war tag above -->
-	              					<exclude name="WEB-INF/web.xml" />
-	              				</fileset>
-	              				<manifest>
-	              					<attribute name="Built-By" value="${builder}" />
-	              					<attribute name="Built-On" value="${build-info.current-date}" />
-	              					<attribute name="Built-At" value="${build-info.current-time}" />
-	              				</manifest>
-	              			</war>
-	              		</target>
-      	
+            	              		<property name="war-file-name" value="farmaya.war" />
+            	              		<property name="source-directory" value="src" />
+            	              		<property name="classes-directory" value="build/classes" />
+            	              		<property name="web-directory" value="WebContent" />
+            	              		<property name="web-xml-file" value="WebContent/WEB-INF/web.xml" />
+            	              		<tstamp prefix="build-info">
+            	              			<format property="current-date" pattern="d-MMMM-yyyy" locale="en" />
+            	              			<format property="current-time" pattern="hh:mm:ss a z" locale="en" />
+            	              		</tstamp>
+            	              		<property name="build-directory" value="build" />
+            	              	
+            	              	<target name="war" depends="">
+            	              			<mkdir dir="${build-directory}" />
+            	              			<delete file="${build-directory}/${war-file-name}" />
+            	              			<war warfile="${build-directory}/${war-file-name}" webxml="${web-xml-file}">
+            	              				<classes dir="${classes-directory}" />
+            	              				<fileset dir="${web-directory}">
+            	              					<!-- Need to exclude it since webxml is an attribute of the war tag above -->
+            	              					<exclude name="WEB-INF/web.xml" />
+            	              				</fileset>
+            	              				<manifest>
+            	              					<attribute name="Built-By" value="${builder}" />
+            	              					<attribute name="Built-On" value="${build-info.current-date}" />
+            	              					<attribute name="Built-At" value="${build-info.current-time}" />
+            	              				</manifest>
+            	              			</war>
+            	              		</target>
+              	
 </project>

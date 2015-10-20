@@ -34,6 +34,7 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/primefaces-5.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/json.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax.faces.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax.servlet.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
