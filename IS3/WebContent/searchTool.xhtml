@@ -22,7 +22,7 @@
 				<div class="ui-grid-col-3"></div>
 			</div>
 
-			<div class="ui-grid-row">
+			<div  class="ui-grid-row">
 				<div class="ui-grid-col-2"></div>
 				<div class="ui-grid-col-3">
 					<p:inputText value="#{searchBean.address}" id="address"
@@ -40,12 +40,14 @@
 
 					</p:inputText>
 				</div>
-				<div class="ui-grid-col-3">
-					<p:commandButton id="searchButton" value="Buscar"
+				<div class="ui-grid-col-1"></div>
+				<div align="center" class="ui-grid-col-1">
+					<p:commandButton id="searchButton"  value="Buscar"
 						actionListener="#{searchBean.search}" icon="ui-icon-search"
-						styleClass="btn btn-default"
+						styleClass="btn btn-primary btn-lg active"
 						oncomplete="executeSearch(xhr, status, args)" />
 				</div>
+				<div class="ui-grid-col-1"></div>
 			</div>
 
 		</div>

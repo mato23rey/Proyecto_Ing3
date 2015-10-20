@@ -25,7 +25,7 @@
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>searchBean</managed-bean-name>
-		<managed-bean-class>searchBean</managed-bean-class>
+		<managed-bean-class>SearchBean</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>

@@ -3,78 +3,132 @@ package search;
 import java.io.Serializable;
 import java.util.Random;
 
-public class SearchResult implements Serializable{
+/**
+ * @author Seba
+ *Clase que almacena los resultados de la búsqueda
+ * para su despliegue en la pantalla.
+ */
+public class SearchResult implements Serializable {
 
-	/**
-	 * 
-	 */
+	/**ID de serialización.*/
 	private static final long serialVersionUID = 1L;
 
 
-	String pharmacyName,sucursalName,address;
-	int score = 0;
-	int id,pharmacy_id;
+	/**Nombre de la farmacia del resultado.*/
+	/**Nombre de la sucursal del resultado.*/
+	/**Direcciónde la sucursal del resultado.*/
+	private String pharmacyName, sucursalName, address;
 
-	double distance;
+	/**Puntuación de la sucursal del resultado.*/
+	private int score = 0;
+	/**ID de la sucursal del resultado.*/
+	/**ID de la farmacia del resultado.*/
+	private int id, pharmacyId;
 
-	public int getPharmacy_id() {
-		return pharmacy_id;
+	/**Distancia de la sucursal respecto al origen.*/
+	private double distance;
+
+	/**
+	 * @return  ID de la farmacia del resultado.
+	 */
+	public final int getPharmacyId() {
+		return pharmacyId;
 	}
 
-	public void setPharmacy_id(int pharmacy_id) {
-		this.pharmacy_id = pharmacy_id;
+	/**
+	 * @param pharmacyId ID de la farmacia del resultado
+	 */
+	public final void setPharmacyId(final int pharmacyId) {
+		this.pharmacyId = pharmacyId;
 	}
 
-	public int getId() {
+	/**
+	 * @return ID de la sucursal del resultado
+	 */
+	public final int getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	/**
+	 * @param id ID de la sucursal del resultado
+	 */
+	public final void setId(final int id) {
 		this.id = id;
 	}
 
-	public String getPharmacyName() {
+	/**
+	 * @return Nombre de la farmacia del resultado
+	 */
+	public final String getPharmacyName() {
 		return pharmacyName;
 	}
 
-	public void setPharmacyName(String pharmacyName) {
+	/**
+	 * @param pharmacyName Nombre de la farmacia del resultado
+	 */
+	public final void setPharmacyName(final String pharmacyName) {
 		this.pharmacyName = pharmacyName;
 	}
 
-	public String getSucursalName() {
+	/**
+	 * @return Nombre de la sucursal del resultado
+	 */
+	public final String getSucursalName() {
 		return sucursalName;
 	}
 
-	public void setSucursalName(String sucursalName) {
+	/**
+	 * @param sucursalName Nombre de la sucursal del resultado
+	 */
+	public final void setSucursalName(final String sucursalName) {
 		this.sucursalName = sucursalName;
 	}
 
-	public String getAddress() {
+	/**
+	 * @return Dirección de la sucursal del resultado
+	 */
+	public final String getAddress() {
 		return address;
 	}
 
-	public void setAddress(String address) {
+	/**
+	 * @param address Dirección de la sucursal del resultado
+	 */
+	public final void setAddress(final String address) {
 		this.address = address;
 	}
 
-	public int getScore() {
+	/**
+	 * @return Puntos de la sucursal del resultado
+	 */
+	public final int getScore() {
 		return score;
 	}
 
-	public void setScore(int score) {
+	/**
+	 * @param score Puntos de la sucursal del resultado
+	 */
+	public final void setScore(final int score) {
 		this.score = score;
 	}
 
-	public SearchResult(){
+	/**Constructor de la clase.*/
+	public SearchResult() {
 		Random r = new Random();
 		score = r.nextInt(5);
 	}
 
-	public double getDistance() {
+	/**
+	 * @return Distancia de la sucursal respecto al origen
+	 */
+	public final double getDistance() {
 		return distance;
 	}
 
-	public void setDistance(double distance) {
+	/**
+	 * @param distance Distancia de la sucursal respecto al origen
+	 */
+	public final void setDistance(final double distance) {
 		this.distance = distance;
 	}
 

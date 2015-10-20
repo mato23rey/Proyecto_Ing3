@@ -78,8 +78,6 @@ public class loginBean {
 	public boolean isLogued(){
 		return userId != -1;
 	}
-
-
 	private final HttpServletRequest httpServletRequest;
 	private final FacesContext faceContext;
 

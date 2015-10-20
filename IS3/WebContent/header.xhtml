@@ -6,18 +6,18 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+<link href="assets/css/bootstrap-responsive.css" rel="stylesheet"></link>
+</head>
 <body>
 	<ui:composition>
 
 		<div class="ui-grid ui-grid-responsive">
+		
 			<div class="ui-grid-row">
-				<div class="ui-grid-col-2">
-					<h:graphicImage library="img" name="pYLogo.png" height="60"
-						width="150" />
-				</div>
-
-				<div class="ui-grid-col-8"></div>
-				<div class="ui-grid-col-2">
+				<div class="ui-grid-col-10"></div>
+							<div class="ui-grid-col-2">
 
 					<h:form rendered="#{!loginBean.logued}">
 
@@ -27,10 +27,12 @@
 									<p:commandLink action="login" value="Ingresar"
 										styleClass="loginLink" oncomplete="lastUrl = window.location" />
 								</div>
-								<div class="ui-grid-col-6">
+								<div id="regweb" class="ui-grid-col-6">
 									<p:commandLink action="register" value="Registrarse"
 										styleClass="loginLink" />
 								</div>
+								
+															
 							</div>
 						</div>
 
@@ -43,11 +45,33 @@
 					</h:form>
 
 
-				</div>
-
+				</div>	
 			</div>
-		</div>
+		</div>	
+			<div class="ui-grid">
+				<div class="ui-grid-row">
+					<div class="ui-grid-col-5"></div>
+					<div  class="hidden-xs">
+						<a href="index.xhtml"><h:graphicImage library="img" name="fYlogo.png" 
+							 /></a>
+					</div>
+					<div  class="hidden-md hidden-lg">
+						<a href="index.xhtml"><h:graphicImage library="img" name="fYlogoM.png" 
+							 /></a>
+					</div>	
+					<div class="ui-grid-col-5"></div>
+	
+	
+				</div>
+				<div class="ui-grid-row">
+					<div style="heigth:100px;width:100%;" class="ui-grid-col-12">
+					<br/>
+					<br/></div>
+				</div>
+				
+			</div>
 
 	</ui:composition>
+	
 </body>
 </html>

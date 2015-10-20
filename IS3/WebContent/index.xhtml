@@ -37,48 +37,70 @@
 		<ui:insert name="header">
 			<ui:include src="header.xhtml" />
 		</ui:insert>
-		<br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br>
 
-		<h:form>
-			<p:panel header="Solicitá tus medicamentos online"
-				styleClass="textCenter container">
-				<ui:insert name="searchTool">
-					<ui:include src="searchTool.xhtml" />
-				</ui:insert>
-			</p:panel>
-			<p:messages id="messages" showDetail="true" autoUpdate="true"
-				closable="true" />
-		</h:form>
+		<div class="textCenter container">
+			<div class="ui-grid ui-grid-responsive ui-widget">
+				<div class="ui-grid-row">
+					<div class="ui-grid-col-1"></div>
+					<div class="ui-grid-col-10">
+						<h:form>
+							<div class="panel panel-primary">
+								<div align="center" class="panel-heading">
+									<H4>
+										<b>Solicitá tus medicamentos online</b>
+									</H4>
+								</div>
+								<div class="panel-body">
+									<ui:insert name="searchTool">
+										<ui:include src="searchTool.xhtml" />
+									</ui:insert>
+								</div>
+							</div>
+
+							<p:messages id="messages" showDetail="true" autoUpdate="true"
+								closable="true" />
+						</h:form>
+					</div>
+					<div class="ui-grid-col-1"></div>
+				</div>
+			</div>
+		</div>
 	</div>
+	<br></br>
+	<br></br>
 	<br></br>
 	<div class="textCenter container">
 		<div class="ui-grid ui-grid-responsive ui-widget">
-			<h2>Pedir farmacos nunca fue tan fácil</h2>
-			<br></br> <br></br> <br></br>
+			<div class="ui-grid-row">
+				<div class="ui-grid-col-12">
+					<h2>Pedir farmacos nunca fue tan fácil</h2>
+					<br />
+				</div>
+			</div>
 			<div class="ui-grid-row">
 				<div class="ui-grid-col-4">
-					<p:graphicImage
-						value="http://cdn1.ticbeat.com/wp-content/uploads/2015/01/usuario-online.jpg"
-						width="256"></p:graphicImage>
-					<br></br>
-					<p>Ingresá tu dirección y descubrí cientos de farmacias</p>
+					<h:graphicImage library="img" name="usuario-online.jpg" />
+
+					<p>
+						Ingresá tu dirección y descubrí<br /> cientos de farmacias
+					</p>
 				</div>
 
 
 				<div class="ui-grid-col-4">
-					<p:graphicImage
-						value="http://cdn1.ticbeat.com/wp-content/uploads/2015/01/usuario-online.jpg"
-						width="256"></p:graphicImage>
+					<h:graphicImage library="img" name="estanteria.jpg" />
 					<br></br>
-					<p>Elegí la droga que mas te guste y hace tu pedido online</p>
+					<p>
+						Elegí tus medicamentos<br /> de tu farmacia favorita
+					</p>
 				</div>
 
 				<div class="ui-grid-col-4">
-					<p:graphicImage
-						value="http://carlosfelice.com.ar/blog/wp-content/uploads/droga.jpg"
-						width="256"></p:graphicImage>
+					<h:graphicImage library="img" name="medicamento.jpg" />
 					<br></br>
-					<p>La farmacia confirma y entrega el pedido en tu puerta</p>
+					<p>
+						Disfruta tus medicamentos <br /> sin salir de tu casa!
+					</p>
 				</div>
 			</div>
 		</div>
