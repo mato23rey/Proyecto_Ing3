@@ -59,7 +59,7 @@ public class OrderEmitter {
 		emailContent += "<b>TOTAL: $"+total+"<b>";
 
 		emailContent += "<br><br><br>Una vez que recibas el pedido por favor sigue el siguiente link para dejar tus comentarios sobre el servicio:<br><br>";
-		emailContent += "http://localhost:8080/IS3/faces/saleComplete.xhtml?sale="+saleId;
+		emailContent += "http://ec2-54-173-155-213.compute-1.amazonaws.com:8080/farmaya/faces/saleComplete.xhtml?sale="+saleId;
 
 		Emailer.send(userEmail, "Pedido realizado", emailContent);
 

@@ -113,7 +113,7 @@ public class registerBean {
 					context.addCallbackParam("register", true);
 					context.addCallbackParam("target", "index.xhtml");
 
-					String message = "Bienvenid@ "+email+"<br>"+"Para validar la cuenta sigue el siguiente link: http://localhost:8080/IS3/faces/validate.xhtml?code="+validationCode+"&user="+email;
+					String message = "Bienvenid@ "+email+"<br>"+"Para validar la cuenta sigue el siguiente link: http://ec2-54-173-155-213.compute-1.amazonaws.com:8080/farmaya/faces/validate.xhtml?code="+validationCode+"&user="+email;
 
 					Emailer.send(email,"Bienvenido",message);
 				}else{
